@@ -82,12 +82,34 @@
             android:text="FILLER LOCATION" />
 
         <Button
-            android:id="@+id/pSongs"
+            android:id="@+id/pSongButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="0"
             android:text="FILLERSONGS" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <Button
+                android:id="@+id/createPButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="FILLERCREATE" />
+
+            <Button
+                android:id="@+id/cancelPButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="FILLERCANCEL" />
+        </LinearLayout>
 
     </LinearLayout>
 
