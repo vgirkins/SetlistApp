@@ -6,22 +6,22 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="368dp"
-        android:layout_height="495dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="10dp"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
 
         <TextView
-            android:id="@+id/sTitle"
+            android:id="@+id/csTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="FILLERTITLE" />
 
         <TextView
-            android:id="@+id/sArtist"
+            android:id="@+id/csArtist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -34,7 +34,7 @@
             android:padding="10dp">
 
             <TextView
-                android:id="@+id/sKey"
+                android:id="@+id/csKey"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0"
@@ -42,7 +42,7 @@
                 android:text="FILLERKEY" />
 
             <Spinner
-                android:id="@+id/sKeyLetter"
+                android:id="@+id/csKeyLetter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
@@ -50,7 +50,7 @@
                 android:paddingRight="10dp" />
 
             <Spinner
-                android:id="@+id/sKeyInterval"
+                android:id="@+id/csKeyInterval"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
@@ -59,21 +59,21 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/sChords"
+            android:id="@+id/csChords"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="FILLERCHORDS" />
 
         <TextView
-            android:id="@+id/sVideo"
+            android:id="@+id/csVideo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="FILLERVIDEO" />
 
         <TextView
-            android:id="@+id/sDescript"
+            android:id="@+id/csDescript"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -86,18 +86,18 @@
             android:padding="10dp">
 
             <Button
-                android:id="@+id/sCreateButton"
+                android:id="@+id/csCreateButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="FILLERCREATE" />
+                android:text="@string/csCreateButton" />
 
             <Button
-                android:id="@+id/sCancelButton"
+                android:id="@+id/csCancelButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="FILLERCANCEL" />
+                android:text="@string/csCancelButton" />
         </LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

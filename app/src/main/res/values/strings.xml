@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">Setlist</string>
+
+    <!-- home screen -->
+        <string name="hPerformButton"> Performances </string>
+        <string name="hSongsButton"> Song Library </string>
+        <string name="hCreateButton"> Create </string>
+
+    <!--create performance screen -->
+
+        <string name="cpPracticeRadio"> Practice </string>
+        <string name="cpPerformRadio"> Performance </string>
+
+        <string name="cpSetlistButton"> Setlist </string>
+        <string name="cpCreateButton"> Create </string>
+        <string name="cpCancelButton"> Cancel </string>
+
+    <!--create song screen -->
+        <string name="csCreateButton"> Create </string>
+        <string name="csCancelButton"> Cancel </string>
+
+
 </resources>
