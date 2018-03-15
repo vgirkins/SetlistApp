@@ -6,12 +6,26 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 /**
  * Created by Tori on 3/14/2018.
  */
 
 public class CreateSongFragment extends Fragment {
+
+    private TextView songTitleField;
+    private TextView artistTitleField;
+    private TextView keyField;
+    private Spinner keyLetterDropdown;
+    private Spinner keyIntervalDropdown;
+    private TextView chordsLinkField;
+    private TextView videoLinkField;
+    private TextView descriptionField;
+    private Button createButton;
+    private Button cancelButton;
 
     public static CreateSongFragment newInstance() {
         Bundle args = new Bundle();
@@ -37,11 +51,6 @@ public class CreateSongFragment extends Fragment {
     }
 
     @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState); // FIXME is this needed?
 
@@ -50,6 +59,11 @@ public class CreateSongFragment extends Fragment {
         // TODO get references to fields
 
         return view;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
     }
 
 }

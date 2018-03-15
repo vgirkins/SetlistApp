@@ -14,6 +14,7 @@ public class Performance {
     private List<Song> songs;
     private String location;
     private String description;
+    private boolean isPractice;
 
     public Date getDate() {
         return date;
@@ -57,6 +58,14 @@ public class Performance {
 
     public void addSong(Song song) {
         songs.add(song);
+    }
+
+    public boolean isPractice() {
+        return isPractice;
+    }
+
+    public void setIsPractice(boolean isPractice) {
+        this.isPractice = isPractice;
     }
 }
 

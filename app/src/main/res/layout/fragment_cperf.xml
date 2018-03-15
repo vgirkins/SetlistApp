@@ -37,21 +37,21 @@
                 android:text="@string/cpPerformRadio" />
         </LinearLayout>
 
-        <TextView
+        <EditText
             android:id="@+id/cpName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="0"
-            android:text="NAMEFILLER" />
+            android:hint="@string/cpNameHint" />
 
-        <TextView
+        <EditText
             android:id="@+id/cpBand"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="0"
-            android:text="BANDFILLER" />
+            android:hint="@string/cpBandHint" />
 
         <EditText
             android:id="@+id/cpDate"
@@ -61,7 +61,7 @@
             android:layout_weight="0"
             android:ems="10"
             android:inputType="date"
-            android:text="FILLERDATE" />
+            android:hint="@string/cpDateHint" />
 
         <EditText
             android:id="@+id/cpTime"
@@ -71,28 +71,48 @@
             android:layout_weight="0"
             android:ems="10"
             android:inputType="time"
-            android:text="FILLERTIME" />
+            android:hint="@string/cpTimeHint" />
 
-        <TextView
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/cpAMRadio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cpAMRadio"/>
+
+        <RadioButton
+            android:id="@+id/cpPMRadio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cpPMRadio" />
+
+        </LinearLayout>
+
+
+        <EditText
             android:id="@+id/cpLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="0"
-            android:text="FILLER LOCATION" />
+            android:hint="@string/cpLocationHint" />
 
-        <Button
+        <!--I don't think we need this:
+        Button
             android:id="@+id/cpSetlistButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="0"
-            android:text="@string/cpSetlistButton" />
+            android:text="@string/cpSetlistButton" /-->
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0"
             android:orientation="horizontal"
             android:padding="10dp">
 

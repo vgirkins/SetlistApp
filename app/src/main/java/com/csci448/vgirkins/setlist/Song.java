@@ -8,6 +8,7 @@ import java.net.URL;
 
 public class Song {
     private String title;
+    private String artist;
     private String key; // Maybe not the best way to store, consider class or struct
     private boolean isMajorKey;
     private URL linkToVid;
@@ -20,6 +21,14 @@ public class Song {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getArtist() {
+        return artist;
+    }
+
+    public void setArtist(String artist) {
+        this.artist = artist;
     }
 
     public String getKey() {

@@ -13,19 +13,19 @@
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
 
-        <TextView
+        <EditText
             android:id="@+id/csTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="FILLERTITLE" />
+            android:hint="@string/csTitleHint" />
 
-        <TextView
+        <EditText
             android:id="@+id/csArtist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="FILLERARTIST" />
+            android:hint="@string/csArtistHint" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,13 +33,13 @@
             android:orientation="horizontal"
             android:padding="10dp">
 
-            <TextView
+            <EditText
                 android:id="@+id/csKey"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:paddingRight="10dp"
-                android:text="FILLERKEY" />
+                android:hint="@string/csKeyHint"
+                android:paddingRight="10dp" />
 
             <Spinner
                 android:id="@+id/csKeyLetter"
@@ -63,21 +63,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="FILLERCHORDS" />
+            android:hint="@string/csChordsHint" />
 
-        <TextView
+        <EditText
             android:id="@+id/csVideo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="FILLERVIDEO" />
+            android:hint="@string/csVideoHint" />
 
-        <TextView
+        <EditText
             android:id="@+id/csDescript"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="FILLERDESCRIPTION" />
+            android:hint="@string/csDescriptionHint" />
 
         <LinearLayout
             android:layout_width="match_parent"

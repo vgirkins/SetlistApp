@@ -13,11 +13,24 @@
         <string name="cpPracticeRadio"> Practice </string>
         <string name="cpPerformRadio"> Performance </string>
 
+        <string name="cpNameHint"> Name </string>
+        <string name="cpBandHint"> Band </string>
+        <string name="cpDateHint"> Date (MM/DD/YYYY) </string>
+        <string name="cpTimeHint"> Time (HH:MM) </string>
+        <string name="cpAMRadio"> AM </string>
+        <string name="cpPMRadio"> PM </string>
+        <string name="cpLocationHint"> Location </string>
         <string name="cpSetlistButton"> Setlist </string>
         <string name="cpCreateButton"> Create </string>
         <string name="cpCancelButton"> Cancel </string>
 
     <!--create song screen -->
+        <string name="csTitleHint">Title</string>
+        <string name="csArtistHint">Artist</string>
+        <string name="csKeyHint">Key</string>
+        <string name="csChordsHint">Link to Chords</string>
+        <string name="csVideoHint">Link to Video</string>
+        <string name="csDescriptionHint">Description</string>
         <string name="csCreateButton"> Create </string>
         <string name="csCancelButton"> Cancel </string>
 
