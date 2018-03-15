@@ -5,12 +5,27 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
 
 /**
  * Created by Tori on 3/14/2018.
  */
 
 public class CreatePerformanceFragment extends Fragment {
+
+    private RadioButton practiceRadio;
+    private RadioButton performanceRadio;
+    private EditText nameField;
+    private EditText bandField;
+    private EditText dateField;
+    private EditText timeField;
+    private RadioButton amRadio;
+    private RadioButton pmRadio;
+    private EditText locationField;
+    private Button createButton;
+    private Button cancelButton;
 
     public static CreatePerformanceFragment newInstance() {
         Bundle args = new Bundle();
@@ -35,10 +50,6 @@ public class CreatePerformanceFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -46,10 +57,44 @@ public class CreatePerformanceFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_cperf, container, false);
 
-        // TODO get references to fields
+        practiceRadio = view.findViewById(R.id.cpPracRadio);
+
+        performanceRadio = view.findViewById(R.id.cpPerfRadio);
+
+        nameField = view.findViewById(R.id.cpName);
+
+        bandField = view.findViewById(R.id.cpBand);
+
+        timeField = view.findViewById(R.id.cpTime);
+
+        amRadio = view.findViewById(R.id.cpAMRadio);
+
+        pmRadio = view.findViewById(R.id.cpPMRadio);
+
+        locationField = view.findViewById(R.id.cpLocation);
+
+        createButton = view.findViewById(R.id.cpCreateButton);
+        createButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO
+            }
+        });
+
+        cancelButton = view.findViewById(R.id.cpCancelButton);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().onBackPressed();
+            }
+        });
 
         return view;
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+    }
 
 }
