@@ -1,7 +1,10 @@
 package com.csci448.vgirkins.setlist;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +26,9 @@ public class HomeFragment extends Fragment {
     private Button mSongLibraryButton;
     private Button mCreateButton;
 
+    private static final int REQUEST_CODE_CREATE_SONG = 0;
+    private static final int REQUEST_CODE_CREATE_PERFORMANCE = 1;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +44,7 @@ public class HomeFragment extends Fragment {
         mPerformancesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Intent intent = new intent stuff
-                // startActivityForResult
+                // TODO
             }
         });
 
@@ -47,8 +52,7 @@ public class HomeFragment extends Fragment {
         mSongLibraryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Intent intent = new intent stuff
-                // startActivityForResult
+                // TODO
             }
         });
 
@@ -56,12 +60,31 @@ public class HomeFragment extends Fragment {
         mCreateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Intent intent = new intent stuff
-                // startActivityForResult
+                showCreateDialogue();
             }
         });
 
         return view;
+    }
+
+    public void showCreateDialogue() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle(R.string.hCreateButton)
+                .setPositiveButton(R.string.hCreateSongButton, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = CreateActivity.newIntent(getActivity(), SONG_CODE);
+                        startActivityForResult(intent, REQUEST_CODE_CREATE_SONG);
+                    }
+                })
+                .setNeutralButton(R.string.hCreatePerformanceButton, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = CreateActivity.newIntent(getActivity(), PERFORMANCE_CODE);
+                        startActivityForResult(intent, REQUEST_CODE_CREATE_PERFORMANCE);
+                    }
+                });
+        builder.show();
     }
 
 }

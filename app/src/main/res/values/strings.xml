@@ -5,6 +5,8 @@
         <string name="hPerformButton"> Performances </string>
         <string name="hSongsButton"> Song Library </string>
         <string name="hCreateButton"> Create </string>
+        <string name="hCreateSongButton">Song</string>
+        <string name="hCreatePerformanceButton">Performance</string>
 
     <!--create performance screen -->
 
