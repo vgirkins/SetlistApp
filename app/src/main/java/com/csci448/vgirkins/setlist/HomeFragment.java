@@ -10,12 +10,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import java.util.List;
+
 
 /**
  * Created by Tori on 3/14/2018.
  */
 
 public class HomeFragment extends Fragment {
+
+    private List<Song> allSongs;
+    private List<Performance> performances;
 
     private static final String EXTRA_CREATE_CODE = "com.csci448.vgirkins.setlist.create_code"; // This extra tells the activity which "create" fragment to host
     // Could add to these if we end up giving the user the option to create other things. The extra "create code" is compared to these to see what the user launched.
