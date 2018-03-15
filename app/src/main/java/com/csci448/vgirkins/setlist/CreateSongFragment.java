@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -16,14 +17,14 @@ import android.widget.TextView;
 
 public class CreateSongFragment extends Fragment {
 
-    private TextView songTitleField;
-    private TextView artistTitleField;
-    private TextView keyField;
+    private EditText songTitleField;
+    private EditText artistTitleField;
+    private EditText keyField;
     private Spinner keyLetterDropdown;
     private Spinner keyIntervalDropdown;
-    private TextView chordsLinkField;
-    private TextView videoLinkField;
-    private TextView descriptionField;
+    private EditText chordsLinkField;
+    private EditText videoLinkField;
+    private EditText descriptionField;
     private Button createButton;
     private Button cancelButton;
 
@@ -56,7 +57,37 @@ public class CreateSongFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_csong, container, false);
 
-        // TODO get references to fields
+        songTitleField = view.findViewById(R.id.csTitle);
+
+        artistTitleField = view.findViewById(R.id.csArtist);
+
+        keyField = view.findViewById(R.id.csKey);
+
+        keyLetterDropdown = view.findViewById(R.id.csKeyLetter);
+
+        keyIntervalDropdown = view.findViewById(R.id.csKeyInterval);
+
+        chordsLinkField = view.findViewById(R.id.csChords);
+
+        videoLinkField = view.findViewById(R.id.csVideo);
+
+        descriptionField = view.findViewById(R.id.csDescript);
+
+        createButton = view.findViewById(R.id.csCreateButton);
+        createButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO
+            }
+        });
+
+        cancelButton = view.findViewById(R.id.csCancelButton);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().onBackPressed();
+            }
+        });
 
         return view;
     }

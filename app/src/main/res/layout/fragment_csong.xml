@@ -58,7 +58,7 @@
                 android:paddingRight="10dp" />
         </LinearLayout>
 
-        <TextView
+        <EditText
             android:id="@+id/csChords"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
