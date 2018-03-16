@@ -64,8 +64,12 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        allSongs = new ArrayList<Song>();
-        performances = new ArrayList<Performance>();
+        if (allSongs == null) {
+            allSongs = new ArrayList<Song>();
+        }
+        if (performances == null) {
+            performances = new ArrayList<Performance>();
+        }
     }
 
     @Override
@@ -116,6 +120,12 @@ public class HomeFragment extends Fragment {
             Performance newPerformance = CreateActivity.getPerformance(data);
             performances.add(newPerformance);
         }
+        Log.d("icecream", "There are " + performances.size() + " performances and " + allSongs.size() + " songs.");
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
 
     }
 
