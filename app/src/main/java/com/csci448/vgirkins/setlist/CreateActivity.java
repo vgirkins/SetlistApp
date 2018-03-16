@@ -23,8 +23,17 @@ public class CreateActivity extends AppCompatActivity {
     private static final String EXTRA_PERFORMANCE_DESCRIPTION = "com.csci448.vgirkins.setlist.performance_description";
 
     // Extras for song creation
-        // TODO
+    private static final String EXTRA_SONG_NAME = "com.csci448.vgirkins.setlist.song_name";
+    private static final String EXTRA_SONG_ARTIST = "com.csci448.vgirkins.setlist.song_artist";
+    private static final String EXTRA_SONG_KEY = "com.csci448.vgirkins.setlist.song_key";
+    private static final String EXTRA_SONG_KEY_IS_SHARP = "com.csci448.vgirkins.setlist.song_key_is_sharp";
+    private static final String EXTRA_SONG_KEY_IS_FLAT = "com.csci448.vgirkins.setlist.song_key_is_flat";
+    private static final String EXTRA_SONG_KEY_IS_MINOR = "com.csci448.vgirkins.setlist.song_key_is_minor";
+    private static final String EXTRA_SONG_CHORDS = "com.csci448.vgirkins.setlist.song_chords";
+    private static final String EXTRA_SONG_VIDEO = "com.csci448.vgirkins.setlist.song_video";
+    private static final String EXTRA_SONG_DESCRIPTION = "com.csci448.vgirkins.setlist.song_description";
 
+    // Variables for performance
     private boolean isPractice;
     private String performanceName;
     private String performanceBandName;
@@ -33,6 +42,18 @@ public class CreateActivity extends AppCompatActivity {
     private  boolean performanceTimeIsAM;
     private String performanceLocation;
     private String performanceDescription;
+
+    // Variables for song
+    private String songName;
+    private String songArtist;
+    private char songKey;
+    private boolean songKeyIsSharp;
+    private boolean songKeyIsFlat;
+    private  boolean songKeyIsMinor;
+    private String songChords;
+    private String songVideo;
+    private String sonDescription;
+
 
     private static final String EXTRA_CREATE_CODE = "com.csci448.vgirkins.setlist.create_code";
     private static final int SONG_CODE = 0;
@@ -46,11 +67,12 @@ public class CreateActivity extends AppCompatActivity {
 
     protected Fragment createFragment() {
         int createCode = getIntent().getIntExtra(EXTRA_CREATE_CODE, 0);
-        if (createCode == SONG_CODE) {
-            return CreateSongFragment.newInstance();
-        }
-        else if (createCode == PERFORMANCE_CODE) {
+
+        if (createCode == PERFORMANCE_CODE) {
             return CreatePerformanceFragment.newInstance();
+        }
+        else if (createCode == SONG_CODE) {
+            return CreateSongFragment.newInstance();
         }
 
         // We need a return no matter what
@@ -71,15 +93,6 @@ public class CreateActivity extends AppCompatActivity {
                     .add(R.id.fragment_container_create, fragment)
                     .commit();
         }
-
-        isPractice = getIntent().getBooleanExtra(EXTRA_IS_PRACTICE, false);
-        performanceName = getIntent().getStringExtra(EXTRA_PERFORMANCE_NAME);
-        performanceBandName = getIntent().getStringExtra(EXTRA_PERFORMANCE_BAND_NAME);
-        performanceDate = getIntent().getStringExtra(EXTRA_PERFORMANCE_DATE);
-        performanceTime = getIntent().getStringExtra(EXTRA_PERFORMANCE_TIME);
-        performanceTimeIsAM = getIntent().getBooleanExtra(EXTRA_PERFORMANCE_TIME_IS_AM, false);
-        performanceLocation = getIntent().getStringExtra(EXTRA_PERFORMANCE_LOCATION);
-        // TODO description
     }
 
     public static Performance getPerformance(Intent result) {
@@ -90,10 +103,23 @@ public class CreateActivity extends AppCompatActivity {
         String performanceTime = result.getStringExtra(EXTRA_PERFORMANCE_TIME);
         boolean performanceTimeIsAM = result.getBooleanExtra(EXTRA_PERFORMANCE_TIME_IS_AM, false);
         String performanceLocation = result.getStringExtra(EXTRA_PERFORMANCE_LOCATION);
-        // FIXME String performanceDescription = result.getStringExtra(EXTRA_PERFORMANCE_DESCRIPTION);
-        String performanceDescription = "Dummy description";
+        String performanceDescription = result.getStringExtra(EXTRA_PERFORMANCE_DESCRIPTION);
 
         return new Performance(isPractice, performanceName, performanceBandName, performanceDate, performanceTime, performanceTimeIsAM, performanceLocation, performanceDescription);
+    }
+
+    public static Song getSong(Intent result) {
+        String songName = result.getStringExtra(EXTRA_SONG_NAME);
+        String songArtist = result.getStringExtra(EXTRA_SONG_ARTIST);
+        char songKey = result.getCharExtra(EXTRA_SONG_KEY, 'C');
+        boolean songKeyIsSharp = result.getBooleanExtra(EXTRA_SONG_KEY_IS_SHARP, false);
+        boolean songKeyIsFlat = result.getBooleanExtra(EXTRA_SONG_KEY_IS_FLAT, false);
+        boolean songKeyIsMinor = result.getBooleanExtra(EXTRA_SONG_KEY_IS_MINOR, false);
+        String songChords = result.getStringExtra(EXTRA_SONG_CHORDS);
+        String songVideo = result.getStringExtra(EXTRA_SONG_VIDEO);
+        String songDescription = result.getStringExtra(EXTRA_SONG_DESCRIPTION);
+
+        return new Song(songName, songArtist, songKey, songKeyIsSharp, songKeyIsFlat, songKeyIsMinor, songChords, songVideo, songDescription);
     }
 
 }

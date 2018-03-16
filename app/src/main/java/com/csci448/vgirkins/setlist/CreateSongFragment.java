@@ -1,6 +1,7 @@
 package com.csci448.vgirkins.setlist;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,10 +17,28 @@ import android.widget.TextView;
  */
 
 public class CreateSongFragment extends Fragment {
+    private static final String EXTRA_SONG_NAME = "com.csci448.vgirkins.setlist.song_name";
+    private static final String EXTRA_SONG_ARTIST = "com.csci448.vgirkins.setlist.song_artist";
+    private static final String EXTRA_SONG_KEY = "com.csci448.vgirkins.setlist.song_key";
+    private static final String EXTRA_SONG_KEY_IS_SHARP = "com.csci448.vgirkins.setlist.song_key_is_sharp";
+    private static final String EXTRA_SONG_KEY_IS_FLAT = "com.csci448.vgirkins.setlist.song_key_is_flat";
+    private static final String EXTRA_SONG_KEY_IS_MINOR = "com.csci448.vgirkins.setlist.song_key_is_minor";
+    private static final String EXTRA_SONG_CHORDS = "com.csci448.vgirkins.setlist.song_chords";
+    private static final String EXTRA_SONG_VIDEO = "com.csci448.vgirkins.setlist.song_video";
+    private static final String EXTRA_SONG_DESCRIPTION = "com.csci448.vgirkins.setlist.song_description";
+
+    private String songName;
+    private String songArtist;
+    private char songKey;
+    private boolean songKeyIsSharp;
+    private boolean songKeyIsFlat;
+    private  boolean songKeyIsMinor;
+    private String songChords;
+    private String songVideo;
+    private String sonDescription;
 
     private EditText songTitleField;
     private EditText artistTitleField;
-    private EditText keyField;
     private Spinner keyLetterDropdown;
     private Spinner keyIntervalDropdown;
     private EditText chordsLinkField;
@@ -37,6 +56,15 @@ public class CreateSongFragment extends Fragment {
         CreateSongFragment frag = new CreateSongFragment();
         frag.setArguments(args);
         return frag;
+    }
+
+    public void setReturnResult() {
+        Intent resultIntent = new Intent();
+
+        songName = songTitleField.getText().toString();
+        songArtist = artistTitleField.getText().toString();
+        //songKey = keyLetterDropdown.get
+        //songKeyI
     }
 
     @Override
@@ -60,8 +88,6 @@ public class CreateSongFragment extends Fragment {
         songTitleField = view.findViewById(R.id.csTitle);
 
         artistTitleField = view.findViewById(R.id.csArtist);
-
-        keyField = view.findViewById(R.id.csKey);
 
         keyLetterDropdown = view.findViewById(R.id.csKeyLetter);
 
@@ -96,5 +122,7 @@ public class CreateSongFragment extends Fragment {
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
     }
+
+
 
 }

@@ -20,6 +20,7 @@
         <string name="cpAMRadio"> AM </string>
         <string name="cpPMRadio"> PM </string>
         <string name="cpLocationHint"> Location </string>
+        <string name="cpDescriptionHint"> Description </string>
         <string name="cpSetlistButton"> Setlist </string>
         <string name="cpCreateButton"> Create </string>
         <string name="cpCancelButton"> Cancel </string>

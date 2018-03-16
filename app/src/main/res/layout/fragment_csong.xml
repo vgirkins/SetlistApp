@@ -33,7 +33,7 @@
             android:orientation="horizontal"
             android:padding="10dp">
 
-            <EditText
+            <TextView
                 android:id="@+id/csKey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -56,6 +56,12 @@
                 android:layout_weight="0"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp" />
+
+            <CheckBox
+                android:id="@+id/csIsMinorKey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
         </LinearLayout>
 
         <EditText
