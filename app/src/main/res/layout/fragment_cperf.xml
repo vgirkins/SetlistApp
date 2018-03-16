@@ -102,14 +102,14 @@
             android:layout_weight="0"
             android:hint="@string/cpLocationHint" />
 
-        <!--I don't think we need this:
-        Button
-            android:id="@+id/cpSetlistButton"
+        <EditText
+            android:id="@+id/cpDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="0"
-            android:text="@string/cpSetlistButton" /-->
+            android:hint="@string/cpDescriptionHint" />
+
 
         <LinearLayout
             android:layout_width="match_parent"

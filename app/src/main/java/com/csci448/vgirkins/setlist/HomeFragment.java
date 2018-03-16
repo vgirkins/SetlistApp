@@ -32,7 +32,16 @@ public class HomeFragment extends Fragment {
     private static final String EXTRA_PERFORMANCE_DESCRIPTION = "com.csci448.vgirkins.setlist.performance_description";
 
     // Extras for song creation
-        // TODO
+    private static final String EXTRA_SONG_NAME = "com.csci448.vgirkins.setlist.song_name";
+    private static final String EXTRA_SONG_ARTIST = "com.csci448.vgirkins.setlist.song_artist";
+    private static final String EXTRA_SONG_KEY = "com.csci448.vgirkins.setlist.song_key";
+    private static final String EXTRA_SONG_KEY_IS_SHARP = "com.csci448.vgirkins.setlist.song_key_is_sharp";
+    private static final String EXTRA_SONG_KEY_IS_FLAT = "com.csci448.vgirkins.setlist.song_key_is_flat";
+    private static final String EXTRA_SONG_KEY_IS_MINOR = "com.csci448.vgirkins.setlist.song_key_is_minor";
+    private static final String EXTRA_SONG_CHORDS = "com.csci448.vgirkins.setlist.song_chords";
+    private static final String EXTRA_SONG_VIDEO = "com.csci448.vgirkins.setlist.song_video";
+    private static final String EXTRA_SONG_DESCRIPTION = "com.csci448.vgirkins.setlist.song_description";
+
 
     // Other extras
     private static final String EXTRA_CREATE_CODE = "com.csci448.vgirkins.setlist.create_code"; // This extra tells the activity which "create" fragment to host
@@ -55,8 +64,12 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        allSongs = new ArrayList<Song>();
-        performances = new ArrayList<Performance>();
+        if (allSongs == null) {
+            allSongs = new ArrayList<Song>();
+        }
+        if (performances == null) {
+            performances = new ArrayList<Performance>();
+        }
     }
 
     @Override
@@ -99,13 +112,19 @@ public class HomeFragment extends Fragment {
         }
 
         if (requestCode == REQUEST_CODE_CREATE_SONG) {
-            // TODO retrieve song values
+            Song newSong = CreateActivity.getSong(data);
+            allSongs.add(newSong);
         }
 
         else if (requestCode == REQUEST_CODE_CREATE_PERFORMANCE) {
             Performance newPerformance = CreateActivity.getPerformance(data);
             performances.add(newPerformance);
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
 
     }
 

@@ -38,7 +38,6 @@ public class CreatePerformanceFragment extends Fragment {
     private boolean timeIsAM;
     private String location;
     private String description;
-    // TODO description
 
     private RadioButton practiceRadio;
     private RadioButton performanceRadio;
@@ -49,6 +48,7 @@ public class CreatePerformanceFragment extends Fragment {
     private RadioButton amRadio;
     private RadioButton pmRadio;
     private EditText locationField;
+    private EditText descriptionField;
     private Button createButton;
     private Button cancelButton;
 
@@ -73,6 +73,7 @@ public class CreatePerformanceFragment extends Fragment {
         performanceTime = timeField.getText().toString();
         timeIsAM = amRadio.isChecked();
         location = locationField.getText().toString();
+        description = descriptionField.getText().toString();
 
         resultIntent.putExtra(EXTRA_IS_PRACTICE, isPractice);
         resultIntent.putExtra(EXTRA_PERFORMANCE_NAME, performanceName == null ? "My Performance" : performanceName);
@@ -104,7 +105,6 @@ public class CreatePerformanceFragment extends Fragment {
             description = getArguments().getString(EXTRA_PERFORMANCE_DESCRIPTION);
         }
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -158,12 +158,14 @@ public class CreatePerformanceFragment extends Fragment {
 
         locationField = view.findViewById(R.id.cpLocation);
 
+        descriptionField = view.findViewById(R.id.cpDescription);
+
         createButton = view.findViewById(R.id.cpCreateButton);
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setReturnResult();
-                getActivity().onBackPressed();  // TODO may not be right
+                getActivity().onBackPressed();
             }
         });
 
@@ -181,6 +183,7 @@ public class CreatePerformanceFragment extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         // FIXME not sure if this is right
+
         isPractice = practiceRadio.isChecked();
         performanceName = nameField.getText().toString();
         bandName = bandField.getText().toString();

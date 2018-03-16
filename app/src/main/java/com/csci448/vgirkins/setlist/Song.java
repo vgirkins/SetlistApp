@@ -12,14 +12,25 @@ public class Song {
     private UUID mId;
     private String title;
     private String artist;
-    private String key; // Maybe not the best way to store, consider class or struct
-    private boolean isMajorKey;
-    private URL linkToVid;
-    private URL linkToChordCharts;
+    private char key; // Maybe not the best way to store, consider class or struct
+    private boolean isSharpKey;
+    private boolean isFlatKey;
+    private boolean isMinorKey;
+    private String linkToVid;
+    private String linkToChordCharts;
     private String description;
 
-    public Song() {
+    public Song(String title, String artist, char key, boolean isSharpKey, boolean isFlatKey, boolean isMinorKey, String linkToVid, String linkToChordCharts, String description) {
         mId = UUID.randomUUID();
+        this.title = title;
+        this.artist = artist;
+        this.key = key;
+        this.isSharpKey = isSharpKey;
+        this.isFlatKey = isFlatKey;
+        this.isMinorKey = isMinorKey;
+        this.linkToVid = linkToVid;
+        this.linkToChordCharts = linkToChordCharts;
+        this.description = description;
     }
 
     public UUID getId() { return mId; }
@@ -40,35 +51,51 @@ public class Song {
         this.artist = artist;
     }
 
-    public String getKey() {
+    public char getKey() {
         return key;
     }
 
-    public void setKey(String key) {
+    public void setKey(char key) {
         this.key = key;
     }
 
-    public boolean isMajorKey() {
-        return isMajorKey;
+    public boolean isSharpKey() {
+        return isSharpKey;
     }
 
-    public void setIsMajorKey(boolean isMajorKey) {
-        this.isMajorKey = isMajorKey;
+    public void setIsSharpKey(boolean isSharpKey) {
+        this.isSharpKey = isSharpKey;
     }
 
-    public URL getLinkToVid() {
+    public boolean isFlatKey() {
+        return isFlatKey;
+    }
+
+    public void setIsFlatKey(boolean isFlatKey) {
+        this.isFlatKey = isFlatKey;
+    }
+
+    public boolean isMinorKey() {
+        return isMinorKey;
+    }
+
+    public void setIsMinorKey(boolean isMinorKey) {
+        this.isMinorKey = isMinorKey;
+    }
+
+    public String getLinkToVid() {
         return linkToVid;
     }
 
-    public void setLinkToVid(URL linkToVid) {
+    public void setLinkToVid(String linkToVid) {
         this.linkToVid = linkToVid;
     }
 
-    public URL getLinkToChordCharts() {
+    public String getLinkToChordCharts() {
         return linkToChordCharts;
     }
 
-    public void setLinkToChordCharts(URL linkToChordCharts) {
+    public void setLinkToChordCharts(String linkToChordCharts) {
         this.linkToChordCharts = linkToChordCharts;
     }
 
