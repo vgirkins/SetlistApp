@@ -1,12 +1,15 @@
 package com.csci448.vgirkins.setlist;
 
 import java.net.URL;
+import java.util.UUID;
 
 /**
  * Created by Tori on 3/15/2018.
  */
 
 public class Song {
+
+    private UUID mId;
     private String title;
     private String artist;
     private String key; // Maybe not the best way to store, consider class or struct
@@ -14,6 +17,12 @@ public class Song {
     private URL linkToVid;
     private URL linkToChordCharts;
     private String description;
+
+    public Song() {
+        mId = UUID.randomUUID();
+    }
+
+    public UUID getId() { return mId; }
 
     public String getTitle() {
         return title;
