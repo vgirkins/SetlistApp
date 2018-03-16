@@ -29,6 +29,7 @@
         <string name="csTitleHint">Title</string>
         <string name="csArtistHint">Artist</string>
         <string name="csKeyHint">Key</string>
+        <string name="csMinor">Minor</string>
         <string name="csChordsHint">Link to Chords</string>
         <string name="csVideoHint">Link to Video</string>
         <string name="csDescriptionHint">Description</string>

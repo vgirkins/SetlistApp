@@ -108,7 +108,8 @@ public class HomeFragment extends Fragment {
         }
 
         if (requestCode == REQUEST_CODE_CREATE_SONG) {
-            // TODO retrieve song values
+            Song newSong = CreateActivity.getSong(data);
+            allSongs.add(newSong);
         }
 
         else if (requestCode == REQUEST_CODE_CREATE_PERFORMANCE) {

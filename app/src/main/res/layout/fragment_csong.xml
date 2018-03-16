@@ -60,7 +60,8 @@
             <CheckBox
                 android:id="@+id/csIsMinorKey"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="@string/csMinor"/>
 
         </LinearLayout>
 

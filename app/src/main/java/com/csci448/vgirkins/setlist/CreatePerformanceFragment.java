@@ -106,7 +106,6 @@ public class CreatePerformanceFragment extends Fragment {
         }
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState); // FIXME is this needed?
@@ -184,6 +183,7 @@ public class CreatePerformanceFragment extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         // FIXME not sure if this is right
+
         isPractice = practiceRadio.isChecked();
         performanceName = nameField.getText().toString();
         bandName = bandField.getText().toString();
