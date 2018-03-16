@@ -1,3 +1,6 @@
+// https://developer.android.com/guide/topics/ui/controls/spinner.html
+// https://stackoverflow.com/questions/23449270/setonitemselectedlistener-for-spinner-in-fragment#23449489
+
 package com.csci448.vgirkins.setlist;
 
 
@@ -8,14 +11,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
-
-import javax.xml.parsers.SAXParser;
-
 /**
  * Created by Tori on 3/14/2018.
  */
@@ -33,9 +34,9 @@ public class CreateSongFragment extends Fragment {
 
     private String songName;
     private String songArtist;
-    private char songKey;
-    private boolean songKeyIsSharp;
-    private boolean songKeyIsFlat;
+    private char songKey = 'C';
+    private boolean songKeyIsSharp = false;
+    private boolean songKeyIsFlat = false;
     private  boolean songKeyIsMinor;
     private String songChords;
     private String songVideo;
@@ -68,10 +69,7 @@ public class CreateSongFragment extends Fragment {
 
         songName = songTitleField.getText().toString();
         songArtist = artistTitleField.getText().toString();
-        // TODO
-        // songKey = keyLetterDropdown.get
-        // songKeyIsSharp = keyIntervalDropdown.
-        // songKeyIsFlat = keyIntervalDropdown.
+
         songKeyIsMinor = isMinorCheckbox.isChecked();
         songChords = chordsLinkField.getText().toString();
         songVideo = videoLinkField.getText().toString();
@@ -79,12 +77,9 @@ public class CreateSongFragment extends Fragment {
 
         resultIntent.putExtra(EXTRA_SONG_NAME, songName == null ? "My Song" : songName);
         resultIntent.putExtra(EXTRA_SONG_ARTIST, songArtist == null ? "" : songArtist);
-
-        // FIXME hardcoded vals
-        resultIntent.putExtra(EXTRA_SONG_KEY, 'C');
-        resultIntent.putExtra(EXTRA_SONG_KEY_IS_SHARP, false);
-        resultIntent.putExtra(EXTRA_SONG_KEY_IS_FLAT, false);
-
+        resultIntent.putExtra(EXTRA_SONG_KEY, songKey);
+        resultIntent.putExtra(EXTRA_SONG_KEY_IS_SHARP, songKeyIsSharp);
+        resultIntent.putExtra(EXTRA_SONG_KEY_IS_FLAT, songKeyIsFlat);
         resultIntent.putExtra(EXTRA_SONG_KEY_IS_MINOR, songKeyIsMinor);
         resultIntent.putExtra(EXTRA_SONG_CHORDS, songChords == null ? "" : songChords);
         resultIntent.putExtra(EXTRA_SONG_VIDEO, songVideo == null ? "" : songVideo);
@@ -115,7 +110,7 @@ public class CreateSongFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState); // FIXME is this needed?
+        super.onCreate(savedInstanceState);
 
         View view = inflater.inflate(R.layout.fragment_csong, container, false);
 
@@ -124,8 +119,37 @@ public class CreateSongFragment extends Fragment {
         artistTitleField = view.findViewById(R.id.csArtist);
 
         keyLetterDropdown = view.findViewById(R.id.csKeyLetter);
+        keyLetterDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
+                songKey = (char)('A' + pos);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        ArrayAdapter<CharSequence> keyLetterAdapter = ArrayAdapter.createFromResource(getContext(), R.array.csKeys_array, android.R.layout.simple_spinner_item);
+        keyLetterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        keyLetterDropdown.setAdapter(keyLetterAdapter);
 
         keyIntervalDropdown = view.findViewById(R.id.csKeyInterval);
+        keyIntervalDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
+                songKeyIsSharp = (pos == 1);
+                songKeyIsFlat = (pos == 2);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        ArrayAdapter<CharSequence> keyIntervalAdapter = ArrayAdapter.createFromResource(getContext(), R.array.csIntervalArray, android.R.layout.simple_spinner_item);
+        keyIntervalAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        keyIntervalDropdown.setAdapter(keyIntervalAdapter);
 
         isMinorCheckbox = view.findViewById(R.id.csIsMinorKey);
 
@@ -161,10 +185,6 @@ public class CreateSongFragment extends Fragment {
 
         songName = songTitleField.getText().toString();
         songArtist = artistTitleField.getText().toString();
-        // TODO
-        // songKey = keyLetterDropdown.get
-        // songKeyIsSharp = keyIntervalDropdown.
-        // songKeyIsFlat = keyIntervalDropdown.
         songKeyIsMinor = isMinorCheckbox.isChecked();
         songChords = chordsLinkField.getText().toString();
         songVideo = videoLinkField.getText().toString();
@@ -172,18 +192,15 @@ public class CreateSongFragment extends Fragment {
         super.onSaveInstanceState(savedInstanceState);
         savedInstanceState.putString(EXTRA_SONG_NAME, songName);
         savedInstanceState.putString(EXTRA_SONG_ARTIST, songArtist);
-
-        // FIXME hardcoded vals
-        savedInstanceState.putChar(EXTRA_SONG_KEY, 'C');
-        savedInstanceState.putBoolean(EXTRA_SONG_KEY_IS_SHARP, false);
-        savedInstanceState.putBoolean(EXTRA_SONG_KEY_IS_FLAT, false);
+        savedInstanceState.putChar(EXTRA_SONG_KEY, songKey);
+        savedInstanceState.putBoolean(EXTRA_SONG_KEY_IS_SHARP, songKeyIsSharp);
+        savedInstanceState.putBoolean(EXTRA_SONG_KEY_IS_FLAT, songKeyIsFlat);
 
         savedInstanceState.putBoolean(EXTRA_SONG_KEY_IS_MINOR, songKeyIsMinor);
         savedInstanceState.putString(EXTRA_SONG_CHORDS, songChords);
         savedInstanceState.putString(EXTRA_SONG_VIDEO, songVideo);
         savedInstanceState.putString(EXTRA_SONG_DESCRIPTION, songDescription);
     }
-
 
 
 }
