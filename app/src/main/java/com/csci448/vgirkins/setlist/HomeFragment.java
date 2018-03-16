@@ -90,7 +90,7 @@ public class HomeFragment extends Fragment {
         mSongLibraryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO
+                showSongList();
             }
         });
 
@@ -146,6 +146,11 @@ public class HomeFragment extends Fragment {
                     }
                 });
         builder.show();
+    }
+
+    public void showSongList() {
+        Intent intent = SongListActivity.newIntent(getActivity());
+        startActivity(intent);
     }
 
 }

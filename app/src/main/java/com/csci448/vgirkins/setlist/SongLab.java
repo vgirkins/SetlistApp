@@ -24,6 +24,10 @@ public class SongLab {
 
     private SongLab(Context context) {
         mSongs = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            Song song = new Song("TestTitle", "TestArtist", 'A', true, false, false, "https://www.youtube.com/watch?v=dQw4w9WgXcQ", "https://tabs.ultimate-guitar.com/tab/rick_astley/never_gonna_give_you_up_chords_521741", "He's never gonna give you up.");
+            mSongs.add(song);
+        }
     }
 
     public List<Song> getSongs() {

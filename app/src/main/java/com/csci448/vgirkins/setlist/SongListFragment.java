@@ -26,6 +26,9 @@ public class SongListFragment extends Fragment{
         View view = inflater.inflate(R.layout.fragment_song_list, container, false);
         mSongRecyclerView = view.findViewById(R.id.song_recycler_view);
         mSongRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        updateUI();
+
         return view;
     }
 
