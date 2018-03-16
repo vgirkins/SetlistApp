@@ -120,7 +120,6 @@ public class HomeFragment extends Fragment {
             Performance newPerformance = CreateActivity.getPerformance(data);
             performances.add(newPerformance);
         }
-        Log.d("icecream", "There are " + performances.size() + " performances and " + allSongs.size() + " songs.");
     }
 
     @Override
