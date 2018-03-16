@@ -35,6 +35,10 @@
         <string name="csDescriptionHint">Description</string>
         <string name="csCreateButton"> Create </string>
         <string name="csCancelButton"> Cancel </string>
+
+        <string name="dsDeleteButton"> Delete </string>
+        <string name="dpDeleteButton"> Delete </string>
+
         <string-array name="csKeys_array">
             <item>A</item>
             <item>B</item>
