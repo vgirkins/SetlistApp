@@ -106,6 +106,7 @@ public class HomeFragment extends Fragment {
             Performance newPerformance = CreateActivity.getPerformance(data);
             performances.add(newPerformance);
         }
+
     }
 
     public void showCreateDialogue() {

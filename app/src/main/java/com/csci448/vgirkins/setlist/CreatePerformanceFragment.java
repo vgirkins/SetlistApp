@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,14 +30,14 @@ public class CreatePerformanceFragment extends Fragment {
     private static final String EXTRA_PERFORMANCE_LOCATION = "com.csci448.vgirkins.setlist.peformance_location";
     private static final String EXTRA_PERFORMANCE_DESCRIPTION = "com.csci448.vgirkins.setlist.performance_description";
 
-    private boolean isPractice = false;
-    private  String performanceName = "My Performance";
-    private String bandName = "My Band";
-    private String performanceDate = "01/01/2018";
-    private String performanceTime = "12:00";
-    private boolean timeIsAM = false;
-    private String location = "";
-    private String description = "";
+    private boolean isPractice;
+    private String performanceName;
+    private String bandName;
+    private String performanceDate;
+    private String performanceTime;
+    private boolean timeIsAM;
+    private String location;
+    private String description;
     // TODO description
 
     private RadioButton practiceRadio;
@@ -65,14 +66,22 @@ public class CreatePerformanceFragment extends Fragment {
     public void setReturnResult() {
         Intent resultIntent = new Intent();
 
+        isPractice = practiceRadio.isChecked();
+        performanceName = nameField.getText().toString();
+        bandName = bandField.getText().toString();
+        performanceDate = dateField.getText().toString();
+        performanceTime = timeField.getText().toString();
+        timeIsAM = amRadio.isChecked();
+        location = locationField.getText().toString();
+
         resultIntent.putExtra(EXTRA_IS_PRACTICE, isPractice);
-        resultIntent.putExtra(EXTRA_PERFORMANCE_NAME, performanceName);
-        resultIntent.putExtra(EXTRA_PERFORMANCE_BAND_NAME, bandName);
-        resultIntent.putExtra(EXTRA_PERFORMANCE_DATE, performanceDate);
-        resultIntent.putExtra(EXTRA_PERFORMANCE_TIME, performanceTime);
+        resultIntent.putExtra(EXTRA_PERFORMANCE_NAME, performanceName == null ? "My Performance" : performanceName);
+        resultIntent.putExtra(EXTRA_PERFORMANCE_BAND_NAME, bandName == null ? "My Band" : bandName);
+        resultIntent.putExtra(EXTRA_PERFORMANCE_DATE, performanceDate == null ? "No date set" : performanceDate);
+        resultIntent.putExtra(EXTRA_PERFORMANCE_TIME, performanceTime == null ? "No time set" : performanceTime);
         resultIntent.putExtra(EXTRA_PERFORMANCE_TIME_IS_AM, timeIsAM);
-        resultIntent.putExtra(EXTRA_PERFORMANCE_LOCATION, location);
-        resultIntent.putExtra(EXTRA_PERFORMANCE_DESCRIPTION, description);
+        resultIntent.putExtra(EXTRA_PERFORMANCE_LOCATION, location == null ? "No location set" : location);
+        resultIntent.putExtra(EXTRA_PERFORMANCE_DESCRIPTION, description == null ? "" : description);
 
         getActivity().setResult(Activity.RESULT_OK, resultIntent);
     }
@@ -125,6 +134,8 @@ public class CreatePerformanceFragment extends Fragment {
 
         bandField = view.findViewById(R.id.cpBand);
 
+        dateField = view.findViewById(R.id.cpDate);
+
         timeField = view.findViewById(R.id.cpTime);
 
         amRadio = view.findViewById(R.id.cpAMRadio);
@@ -169,6 +180,7 @@ public class CreatePerformanceFragment extends Fragment {
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
+        // FIXME not sure if this is right
         isPractice = practiceRadio.isChecked();
         performanceName = nameField.getText().toString();
         bandName = bandField.getText().toString();
