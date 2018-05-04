@@ -20,6 +20,16 @@ public class Song {
     private String linkToChordCharts;
     private String description;
 
+    public Song() {
+        mId = UUID.randomUUID();
+        title = "Title";
+        artist = "Artist";
+        key = 'X';
+        linkToVid = "";
+        linkToChordCharts = "";
+        description = "Default Song";
+    }
+
     public Song(String title, String artist, char key, boolean isSharpKey, boolean isFlatKey, boolean isMinorKey, String linkToVid, String linkToChordCharts, String description) {
         mId = UUID.randomUUID();
         this.title = title;

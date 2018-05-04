@@ -24,6 +24,9 @@
             android:name=".SongListActivity"
             android:parentActivityName=".HomeActivity">
         </activity>
+        <activity
+            android:name=".SongActivity"
+            android:parentActivityName=".SongListActivity"/>
 
     </application>
 

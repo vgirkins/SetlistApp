@@ -1,5 +1,6 @@
 package com.csci448.vgirkins.setlist;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -32,27 +33,38 @@ public class SongListFragment extends Fragment{
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateUI();
+    }
+
     private class SongHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView mTitleTextView;
         private TextView mArtistTextView;
+        private TextView mDescriptionTextView;
         private Song mSong;
 
         private SongHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.list_item_song, parent, false));
+            itemView.setOnClickListener(this);
             mTitleTextView = itemView.findViewById(R.id.song_title);
             mArtistTextView = itemView.findViewById(R.id.song_artist);
+            mDescriptionTextView = itemView.findViewById(R.id.song_description);
         }
 
         public void bind(Song song){
             mSong = song;
             mTitleTextView.setText(mSong.getTitle());
             mArtistTextView.setText(mSong.getArtist());
+            mDescriptionTextView.setText(mSong.getDescription());
         }
 
         @Override
         public void onClick(View view) {
-            Toast.makeText(getActivity(), mSong.getTitle(), Toast.LENGTH_SHORT).show();
+            Intent intent = SongActivity.newIntent(getActivity(), mSong.getId());
+            startActivity(intent);
         }
     }
 
@@ -85,7 +97,12 @@ public class SongListFragment extends Fragment{
         SongLab songLab = SongLab.get(getActivity());
         List<Song> songs = songLab.getSongs();
 
-        mAdapter = new SongAdapter(songs);
-        mSongRecyclerView.setAdapter(mAdapter);
+        if (mAdapter == null) {
+            mAdapter = new SongAdapter(songs);
+            mSongRecyclerView.setAdapter(mAdapter);
+        }
+        else {
+            mAdapter.notifyDataSetChanged();
+        }
     }
 }

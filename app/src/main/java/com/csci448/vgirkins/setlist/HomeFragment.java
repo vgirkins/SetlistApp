@@ -65,10 +65,10 @@ public class HomeFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (allSongs == null) {
-            allSongs = new ArrayList<Song>();
+            allSongs = new ArrayList<>();
         }
         if (performances == null) {
-            performances = new ArrayList<Performance>();
+            performances = new ArrayList<>();
         }
     }
 
@@ -114,11 +114,13 @@ public class HomeFragment extends Fragment {
         if (requestCode == REQUEST_CODE_CREATE_SONG) {
             Song newSong = CreateActivity.getSong(data);
             allSongs.add(newSong);
+            Log.i("icecream", "New song!");
         }
 
         else if (requestCode == REQUEST_CODE_CREATE_PERFORMANCE) {
             Performance newPerformance = CreateActivity.getPerformance(data);
             performances.add(newPerformance);
+            Log.i("icecream", "New performance!");
         }
     }
 

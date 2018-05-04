@@ -33,6 +33,7 @@ public class CreateActivity extends AppCompatActivity {
     private static final String EXTRA_SONG_VIDEO = "com.csci448.vgirkins.setlist.song_video";
     private static final String EXTRA_SONG_DESCRIPTION = "com.csci448.vgirkins.setlist.song_description";
 
+    /*
     // Variables for performance
     private boolean isPractice;
     private String performanceName;
@@ -53,6 +54,7 @@ public class CreateActivity extends AppCompatActivity {
     private String songChords;
     private String songVideo;
     private String sonDescription;
+    */
 
 
     private static final String EXTRA_CREATE_CODE = "com.csci448.vgirkins.setlist.create_code";
