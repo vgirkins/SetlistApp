@@ -92,6 +92,10 @@ public class SongListFragment extends Fragment{
         public int getItemCount() {
             return mSongs.size();
         }
+
+        public void setSongs(List<Song> songs) {
+            mSongs = songs;
+        }
     }
 
     private void updateUI() {
@@ -103,6 +107,7 @@ public class SongListFragment extends Fragment{
             mSongRecyclerView.setAdapter(mAdapter);
         }
         else {
+            mAdapter.setSongs(songs);
             mAdapter.notifyDataSetChanged();
         }
     }

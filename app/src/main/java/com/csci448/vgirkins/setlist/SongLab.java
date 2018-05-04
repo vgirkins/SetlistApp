@@ -2,10 +2,12 @@ package com.csci448.vgirkins.setlist;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.csci448.vgirkins.setlist.database.SetlistBaseHelper;
+import com.csci448.vgirkins.setlist.database.SetlistCursorWrapper;
 import com.csci448.vgirkins.setlist.database.SetlistDbSchema.*;
 
 import java.util.ArrayList;
@@ -42,11 +44,39 @@ public class SongLab {
     }
 
     public List<Song> getSongs() {
-        return new ArrayList<>();
+        List<Song> songs = new ArrayList<>();
+
+        SetlistCursorWrapper cursor = querySongs(null, null);
+
+        try {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                songs.add(cursor.getSong());
+                cursor.moveToNext();
+            }
+        } finally {
+            cursor.close();
+        }
+
+        return songs;
     }
 
     public Song getSong(UUID id) {
-        return null;
+        SetlistCursorWrapper cursor = querySongs(
+                SongTable.Cols.UUID + " = ?",
+                new String[] { id.toString() }
+        );
+
+        try {
+            if (cursor.getCount() == 0) {
+                return null;
+            }
+
+            cursor.moveToFirst();
+            return cursor.getSong();
+        } finally {
+            cursor.close();
+        }
     }
 
     public void updateSong(Song song) {
@@ -56,6 +86,20 @@ public class SongLab {
         mDatabase.update(SongTable.NAME, values,
                 SongTable.Cols.UUID + " = ?",
                 new String[] { uuidString });
+    }
+
+    private SetlistCursorWrapper querySongs(String whereClause, String[] whereArgs) {
+        Cursor cursor = mDatabase.query(
+                SongTable.NAME,
+                null,
+                whereClause,
+                whereArgs,
+                null,
+                null,
+                null
+        );
+
+        return new SetlistCursorWrapper(cursor);
     }
 
     private static ContentValues getContentValues(Song song) {

@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.csci448.vgirkins.setlist.database.SetlistDbSchema;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,30 +23,6 @@ import java.util.List;
  */
 
 public class HomeFragment extends Fragment {
-    // Extras for performance creation
-    private static final String EXTRA_IS_PRACTICE = "com.csci448.vgirkins.setlist.is_practice";
-    private static final String EXTRA_PERFORMANCE_NAME = "com.csci448.vgirkins.setlist.performance_name";
-    private static final String EXTRA_PERFORMANCE_BAND_NAME = "com.csci448.vgirkins.setlist.band_name";
-    private static final String EXTRA_PERFORMANCE_DATE = "com.csci448.vgirkins.setlist.peformance_date";
-    private static final String EXTRA_PERFORMANCE_TIME = "com.csci448.vgirkins.setlist.performance_time";
-    private static final String EXTRA_PERFORMANCE_TIME_IS_AM = "com.csci448.vgirkins.setlist.performance_time_is_am";   // For AM vs PM performance times
-    private static final String EXTRA_PERFORMANCE_LOCATION = "com.csci448.vgirkins.setlist.peformance_location";
-    private static final String EXTRA_PERFORMANCE_DESCRIPTION = "com.csci448.vgirkins.setlist.performance_description";
-
-    // Extras for song creation
-    private static final String EXTRA_SONG_NAME = "com.csci448.vgirkins.setlist.song_name";
-    private static final String EXTRA_SONG_ARTIST = "com.csci448.vgirkins.setlist.song_artist";
-    private static final String EXTRA_SONG_KEY = "com.csci448.vgirkins.setlist.song_key";
-    private static final String EXTRA_SONG_KEY_IS_SHARP = "com.csci448.vgirkins.setlist.song_key_is_sharp";
-    private static final String EXTRA_SONG_KEY_IS_FLAT = "com.csci448.vgirkins.setlist.song_key_is_flat";
-    private static final String EXTRA_SONG_KEY_IS_MINOR = "com.csci448.vgirkins.setlist.song_key_is_minor";
-    private static final String EXTRA_SONG_CHORDS = "com.csci448.vgirkins.setlist.song_chords";
-    private static final String EXTRA_SONG_VIDEO = "com.csci448.vgirkins.setlist.song_video";
-    private static final String EXTRA_SONG_DESCRIPTION = "com.csci448.vgirkins.setlist.song_description";
-
-
-    // Other extras
-    private static final String EXTRA_CREATE_CODE = "com.csci448.vgirkins.setlist.create_code"; // This extra tells the activity which "create" fragment to host
     // Could add to these if we end up giving the user the option to create other things. The extra "create code" is compared to these to see what the user launched.
     private static final int SONG_CODE = 0;
     private static final int PERFORMANCE_CODE = 1;
@@ -61,6 +39,7 @@ public class HomeFragment extends Fragment {
     private static final int REQUEST_CODE_CREATE_SONG = 0;
     private static final int REQUEST_CODE_CREATE_PERFORMANCE = 1;
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +54,7 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState); // TODO do we need this?
+
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
@@ -113,8 +93,7 @@ public class HomeFragment extends Fragment {
 
         if (requestCode == REQUEST_CODE_CREATE_SONG) {
             Song newSong = CreateActivity.getSong(data);
-            allSongs.add(newSong);
-            Log.i("icecream", "New song!");
+            SongLab.get(getActivity()).addSong(newSong);
         }
 
         else if (requestCode == REQUEST_CODE_CREATE_PERFORMANCE) {

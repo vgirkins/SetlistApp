@@ -20,6 +20,7 @@ public class Song {
     private String linkToChordCharts;
     private String description;
 
+    // TODO check if still need this constructor
     public Song() {
         mId = UUID.randomUUID();
         title = "Title";
@@ -29,6 +30,10 @@ public class Song {
         linkToVid = "";
         linkToChordCharts = "";
         description = "Default Song";
+    }
+
+    public Song(UUID id) {
+        mId = id;
     }
 
     public Song(String title, String artist, char key, boolean isSharpKey, boolean isFlatKey, boolean isMinorKey, String linkToVid, String linkToChordCharts, String description) {
