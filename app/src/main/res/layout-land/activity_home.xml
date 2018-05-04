@@ -11,7 +11,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/logo_no_text"
+        android:src="@drawable/logo_no_text_land"
         android:scaleType="centerCrop"/>
 
 </FrameLayout>

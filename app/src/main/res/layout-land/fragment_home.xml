@@ -18,20 +18,29 @@
 
         <Button
             android:id="@+id/hPerformButton"
+            style="@style/ButtonStyle"
+            android:background="@drawable/button_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:text="@string/hPerformButton" />
 
         <Button
             android:id="@+id/hSongsButton"
+            style="@style/ButtonStyle"
+            android:background="@drawable/button_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:text="@string/hSongsButton" />
 
         <Button
             android:id="@+id/hCreateButton"
+            style="@style/ButtonStyle"
+            android:background="@drawable/button_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:text="@string/hCreateButton" />
     </LinearLayout>
 </LinearLayout>

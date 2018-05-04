@@ -13,7 +13,7 @@ import java.util.UUID;
  */
 
 public class SongActivity extends SingleFragmentActivity{
-    private static final String EXTRA_SONG_ID = "com.csci448.vgirkins.setlist.song_id";
+    public static final String EXTRA_SONG_ID = "com.csci448.vgirkins.setlist.song_id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +31,9 @@ public class SongActivity extends SingleFragmentActivity{
         }
     }
 
-    public static Intent newIntent(Context packageContext, UUID crimeId) {
+    public static Intent newIntent(Context packageContext, UUID songId) {
         Intent intent = new Intent(packageContext, SongActivity.class);
-        intent.putExtra(EXTRA_SONG_ID, crimeId);
+        intent.putExtra(EXTRA_SONG_ID, songId);
         return intent;
     }
 

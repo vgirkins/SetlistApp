@@ -1,6 +1,7 @@
 package com.csci448.vgirkins.setlist;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,7 @@ public class SongLab {
         mSongs = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
             Song song = new Song();
+            song.setTitle("Dah title");
             mSongs.add(song);
         }
     }

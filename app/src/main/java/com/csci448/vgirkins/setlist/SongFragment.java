@@ -2,14 +2,16 @@ package com.csci448.vgirkins.setlist;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.TextView;
-
-import org.w3c.dom.Text;
+import android.widget.CompoundButton;
+import android.widget.EditText;
 
 import java.util.UUID;
 
@@ -20,14 +22,14 @@ import java.util.UUID;
 public class SongFragment extends Fragment{
     private Song mSong;
 
-    private TextView mTitleTextView;
-    private TextView mArtistTextView;
-    private TextView mKeyTextView;
-    private TextView mKeyLetterTextView;
+    private EditText mTitleEditText;
+    private EditText mArtistEditText;
+    private EditText mKeyEditText;
+    private EditText mKeyLetterEditText;
     private CheckBox mMinorKeyCheckBox;
-    private TextView mChordChartsTextView;
-    private TextView mVideoTextView;
-    private TextView mDescriptionTextView;
+    private EditText mChordChartsEditText;
+    private EditText mVideoEditText;
+    private EditText mDescriptionEditText;
     private Button mDeleteButton;
     private static final String ARG_SONG_ID = "song_id";
 
@@ -43,39 +45,145 @@ public class SongFragment extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        UUID songId = (UUID) getArguments().getSerializable(ARG_SONG_ID);
+        UUID songId = (UUID) getActivity().getIntent().getSerializableExtra(SongActivity.EXTRA_SONG_ID);
         mSong = SongLab.get(getActivity()).getSong(songId);
-        if (mSong == null) mSong = new Song();
+        if (mSong == null) {
+            Log.i("icecream", "Null return");
+            mSong = new Song();  // FIXME
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_dsong, container, false);
 
-        mTitleTextView = v.findViewById(R.id.dsTitle);
-        mTitleTextView.setText(mSong.getTitle());
+        mTitleEditText = v.findViewById(R.id.dsTitle);
+        mTitleEditText.setText(mSong.getTitle());
+        mTitleEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // Intentionally left blank
+            }
 
-        mArtistTextView = v.findViewById(R.id.dsArtist);
-        mArtistTextView.setText(mSong.getArtist());
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                mSong.setTitle(charSequence.toString());
+            }
 
-        mKeyTextView = v.findViewById(R.id.dsKey);
-        mKeyTextView.setText(Character.toString(mSong.getKey()));  // Cast to string
+            @Override
+            public void afterTextChanged(Editable editable) {
+                // Intentionally left blank
+            }
+        });
 
-        mKeyLetterTextView = v.findViewById(R.id.dsKeyLetter);
-        mKeyLetterTextView.setText(mSong.isSharpKey() ? "#" : "");
-        mKeyLetterTextView.setText(mSong.isFlatKey() ? "b" : "");
+        mArtistEditText = v.findViewById(R.id.dsArtist);
+        mArtistEditText.setText(mSong.getArtist());
+        mArtistEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // Intentionally left blank
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                mSong.setArtist(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                // Intentionally left blank
+            }
+        });
+
+        mKeyEditText = v.findViewById(R.id.dsKey);
+        mKeyEditText.setText(Character.toString(mSong.getKey()));  // Cast to string
+        mKeyEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // Intentionally left blank
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                mSong.setKey(charSequence.charAt(0));   // FIXME should learn to expect only 1 integer
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                // Intentionally left blank
+            }
+        });
+
+        // TODO allow editing of key
+        mKeyLetterEditText = v.findViewById(R.id.dsKeyLetter);
+        mKeyLetterEditText.setText(mSong.isSharpKey() ? "♯" : "");
+        mKeyLetterEditText.setText(mSong.isFlatKey() ? "♭" : "");
 
         mMinorKeyCheckBox = v.findViewById(R.id.dsIsMinorKey);
         mMinorKeyCheckBox.setChecked(mSong.isMinorKey());
+        mMinorKeyCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                mSong.setIsMinorKey(b);
+            }
+        });
 
-        mChordChartsTextView = v.findViewById(R.id.dsChords);
-        mChordChartsTextView.setText(mSong.getLinkToChordCharts());
+        mChordChartsEditText = v.findViewById(R.id.dsChords);
+        mChordChartsEditText.setText(mSong.getLinkToChordCharts());
+        mChordChartsEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // Intentionally left blank
+            }
 
-        mVideoTextView = v.findViewById(R.id.dsVideo);
-        mVideoTextView.setText(mSong.getLinkToVid());
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                mSong.setLinkToChordCharts(charSequence.toString());
+            }
 
-        mDescriptionTextView = v.findViewById(R.id.dsDescript);
-        mDescriptionTextView.setText(mSong.getDescription());
+            @Override
+            public void afterTextChanged(Editable editable) {
+                // Intentionally left blank
+            }
+        });
+
+        mVideoEditText = v.findViewById(R.id.dsVideo);
+        mVideoEditText.setText(mSong.getLinkToVid());
+        mVideoEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // Intentionally left blank
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                mSong.setLinkToVid(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                // Intentionally left blank
+            }
+        });
+
+        mDescriptionEditText = v.findViewById(R.id.dsDescript);
+        mDescriptionEditText.setText(mSong.getDescription());
+        mDescriptionEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // Intentionally left blank
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                mSong.setDescription(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                // Intentionally left blank
+            }
+        });
 
         mDeleteButton = v.findViewById(R.id.dsDeleteButton);
         mDeleteButton.setOnClickListener(new View.OnClickListener() {

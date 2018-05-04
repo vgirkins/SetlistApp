@@ -114,12 +114,16 @@
 
         <Button
             android:id="@+id/csCreateButton"
+            style="@style/ButtonStyle"
+            android:background="@drawable/button_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/csCreateButton" />
         <Button
             android:id="@+id/csCancelButton"
+            style="@style/ButtonStyle"
+            android:background="@drawable/button_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

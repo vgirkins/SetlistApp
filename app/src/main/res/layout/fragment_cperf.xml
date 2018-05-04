@@ -119,6 +119,8 @@
 
             <Button
                 android:id="@+id/cpCreateButton"
+                style="@style/ButtonStyle"
+                android:background="@drawable/button_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -126,6 +128,8 @@
 
             <Button
                 android:id="@+id/cpCancelButton"
+                style="@style/ButtonStyle"
+                android:background="@drawable/button_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

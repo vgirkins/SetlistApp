@@ -13,14 +13,14 @@
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
 
-        <TextView
+        <EditText
             android:id="@+id/dsTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:hint="@string/csTitleHint" />
 
-        <TextView
+        <EditText
             android:id="@+id/dsArtist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
             android:orientation="horizontal"
             android:padding="10dp">
 
-            <TextView
+            <EditText
                 android:id="@+id/dsKey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
                 android:hint="@string/csKeyHint"
                 android:paddingRight="10dp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/dsKeyLetter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -49,7 +49,7 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/dsKeyInterval"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -66,21 +66,21 @@
 
         </LinearLayout>
 
-        <TextView
+        <EditText
             android:id="@+id/dsChords"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:hint="@string/csChordsHint" />
 
-        <TextView
+        <EditText
             android:id="@+id/dsVideo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:hint="@string/csVideoHint" />
 
-        <TextView
+        <EditText
             android:id="@+id/dsDescript"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -95,6 +95,8 @@
 
             <Button
                 android:id="@+id/dsDeleteButton"
+                style="@style/ButtonStyle"
+                android:background="@drawable/button_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

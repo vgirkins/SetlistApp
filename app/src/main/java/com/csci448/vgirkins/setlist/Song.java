@@ -25,6 +25,7 @@ public class Song {
         title = "Title";
         artist = "Artist";
         key = 'X';
+        isMinorKey = true;
         linkToVid = "";
         linkToChordCharts = "";
         description = "Default Song";
