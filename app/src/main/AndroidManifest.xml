@@ -27,6 +27,7 @@
         <activity
             android:name=".SongActivity"
             android:parentActivityName=".SongListActivity"/>
+        <activity android:name=".SongPagerActivity"/>
 
     </application>
 

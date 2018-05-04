@@ -43,13 +43,19 @@ public class SongFragment extends Fragment{
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+
+        SongLab.get(getActivity()).updateSong(mSong);
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         UUID songId = (UUID) getActivity().getIntent().getSerializableExtra(SongActivity.EXTRA_SONG_ID);
         mSong = SongLab.get(getActivity()).getSong(songId);
         if (mSong == null) {
-            Log.i("icecream", "Null return");
-            mSong = new Song();  // FIXME
+            mSong = new Song();  // FIXME hopefully this never happens
         }
     }
 
@@ -105,7 +111,7 @@ public class SongFragment extends Fragment{
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                mSong.setKey(charSequence.charAt(0));   // FIXME should learn to expect only 1 integer
+                mSong.setKey(charSequence.length() == 0 ? 'C' : charSequence.charAt(0));   // FIXME should learn to expect only 1 character
             }
 
             @Override
@@ -189,7 +195,7 @@ public class SongFragment extends Fragment{
         mDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO delete song
+                SongLab.get(getActivity()).deleteSong(mSong.getId());
             }
         });
 

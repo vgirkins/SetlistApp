@@ -64,7 +64,7 @@ public class SongListFragment extends Fragment{
 
         @Override
         public void onClick(View view) {
-            Intent intent = SongActivity.newIntent(getActivity(), mSong.getId());
+            Intent intent = SongPagerActivity.newIntent(getActivity(), mSong.getId());
             startActivity(intent);
         }
     }
