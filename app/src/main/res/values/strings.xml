@@ -35,9 +35,10 @@
         <string name="csDescriptionHint">Description</string>
         <string name="csCreateButton"> Create </string>
         <string name="csCancelButton"> Cancel </string>
+        <string name="csPerformance"> Performance </string>
 
         <string name="dsDeleteButton"> Delete </string>
-        <string name="dpDeleteButton"> Delete </string>
+        <string name="dpAddSongsButton"> Add Songs </string>
 
         <string-array name="csKeys_array">
             <item>A</item>

@@ -107,8 +107,7 @@ public class SongListFragment extends Fragment{
 
     public void updateUI() {
         SongLab songLab = SongLab.get(getActivity());
-        List<Song> songs = songLab.getSongs();
-
+        List<Song> songs = songLab.getSongs(null);  // FIXME ?
         if (mAdapter == null) {
             mAdapter = new SongAdapter(songs);
             mSongRecyclerView.setAdapter(mAdapter);

@@ -12,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import java.util.UUID;
 
@@ -29,6 +30,7 @@ public class PerformanceFragment extends Fragment {
     private EditText mLocationField;
     private EditText mDescriptionField;
     private Button mDeleteButton;
+    private Button mAddSongsButton;
 
 
     private static final String ARG_PERFORMANCE_ID = "performance_id";
@@ -219,6 +221,15 @@ public class PerformanceFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 PerformanceLab.get(getActivity()).deletePerformance(mPerformance.getId());
+                getActivity().onBackPressed();
+            }
+        });
+
+        mAddSongsButton = v.findViewById(R.id.dpAddSongsButton);
+        mAddSongsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "Clicked!", Toast.LENGTH_SHORT).show();
             }
         });
 

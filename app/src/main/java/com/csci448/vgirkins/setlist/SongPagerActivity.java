@@ -38,7 +38,7 @@ public class SongPagerActivity extends AppCompatActivity {
 
 
 
-        mSongs = SongLab.get(this).getSongs();
+        mSongs = SongLab.get(this).getSongs(null);  // FIXME
         FragmentManager fragmentManager = getSupportFragmentManager();
         mViewPager.setAdapter(new FragmentStatePagerAdapter(fragmentManager) {
             @Override

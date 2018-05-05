@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.csci448.vgirkins.setlist.database.SetlistBaseHelper;
 import com.csci448.vgirkins.setlist.database.SetlistCursorWrapper;
+import com.csci448.vgirkins.setlist.database.SetlistDbSchema;
 import com.csci448.vgirkins.setlist.database.SetlistDbSchema.*;
 
 import java.util.ArrayList;
@@ -43,10 +44,13 @@ public class SongLab {
         mDatabase.insert(SongTable.NAME, null, values);
     }
 
-    public List<Song> getSongs() {
+    public List<Song> getSongs(UUID performanceId) {
         List<Song> songs = new ArrayList<>();
+        String whereClause;
+        if (performanceId == null) whereClause = null;
+        else whereClause = PerformanceTable.Cols.UUID + "=" + "\"" + performanceId + "\"";
 
-        SetlistCursorWrapper cursor = querySongs(null, null);
+        SetlistCursorWrapper cursor = querySongs(whereClause, null);
 
         try {
             cursor.moveToFirst();
@@ -105,7 +109,7 @@ public class SongLab {
     private static ContentValues getContentValues(Song song) {
         ContentValues values = new ContentValues();
         values.put(SongTable.Cols.UUID, song.getId().toString());
-        values.put(SongTable.Cols.PERFORMANCE, song.getPerfId().toString());
+        if (song.getPerfId() != null) values.put(SongTable.Cols.PERFORMANCE, song.getPerfId().toString());  // Song may not be associated with a performance
         values.put(SongTable.Cols.TITLE, song.getTitle());
         values.put(SongTable.Cols.ARTIST, song.getArtist());
         values.put(SongTable.Cols.KEY, Character.toString(song.getKey()));

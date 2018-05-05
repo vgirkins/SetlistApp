@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.UUID;
 
@@ -30,6 +31,7 @@ public class SongFragment extends Fragment{
     private EditText mChordChartsEditText;
     private EditText mVideoEditText;
     private EditText mDescriptionEditText;
+    private TextView mPerformanceTextView;
     private Button mDeleteButton;
     private static final String ARG_SONG_ID = "song_id";
 
@@ -191,11 +193,16 @@ public class SongFragment extends Fragment{
             }
         });
 
+        mPerformanceTextView = v.findViewById(R.id.dsPerformance);
+        if (mSong.getPerfId() != null) mPerformanceTextView.setText((PerformanceLab.get(getActivity()).getPerformance(mSong.getPerfId())).getName());
+        else mPerformanceTextView.setText("This song does not belong to a performance");
+
         mDeleteButton = v.findViewById(R.id.dsDeleteButton);
         mDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 SongLab.get(getActivity()).deleteSong(mSong.getId());
+                getActivity().onBackPressed();
             }
         });
 
