@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.csci448.vgirkins.setlist.database.SetlistBaseHelper;
 import com.csci448.vgirkins.setlist.database.SetlistCursorWrapper;
@@ -98,6 +99,7 @@ public class PerformanceLab {
     }
 
     private static ContentValues getContentValues(Performance performance) {
+        Log.i("icecream", "Performance is " + (performance.isPractice() ? "practice" : "not practice"));
         ContentValues values = new ContentValues();
         values.put(SetlistDbSchema.PerformanceTable.Cols.UUID, performance.getId().toString());
         values.put(SetlistDbSchema.PerformanceTable.Cols.PRACTICE, performance.isPractice() ? 1 : 0);   // FIXME not recognizing this column name

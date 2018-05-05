@@ -9,11 +9,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import java.util.List;
 import java.util.UUID;
 
 public class SongPagerActivity extends AppCompatActivity {
+    private static final String TAG = "SongPagerActivity";
     private static final String EXTRA_SONG_ID = "com.csci448.vgirkins.setlist.song_id";
 
     private ViewPager mViewPager;

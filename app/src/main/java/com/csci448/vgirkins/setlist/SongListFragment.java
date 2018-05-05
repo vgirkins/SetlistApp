@@ -19,9 +19,16 @@ import java.util.List;
  */
 
 public class SongListFragment extends Fragment{
+    private static final String TAG = "SongListFragment";
 
     private RecyclerView mSongRecyclerView;
     private SongAdapter mAdapter;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

@@ -37,6 +37,7 @@ public class SetlistBaseHelper extends SQLiteOpenHelper {
         db.execSQL("create table " + SetlistDbSchema.PerformanceTable.NAME + "(" +
                 " _id integer primary key autoincrement, " +
                 PerformanceTable.Cols.UUID + ", " +
+                PerformanceTable.Cols.PRACTICE + ", " +
                 PerformanceTable.Cols.NAME + ", " +
                 PerformanceTable.Cols.BAND_NAME + ", " +
                 PerformanceTable.Cols.DATE + ", " +

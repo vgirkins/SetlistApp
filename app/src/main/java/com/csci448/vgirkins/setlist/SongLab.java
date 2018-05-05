@@ -119,12 +119,7 @@ public class SongLab {
         return values;
     }
 
-    public void deleteSong(UUID id) {   // FIXME isn't working properly
-        for (Song song : mSongs) {
-            if (song.getId() == id) {
-                mSongs.remove(song);
-                break;
-            }
-        }
+    public void deleteSong(UUID id) {
+        mDatabase.delete(SongTable.NAME, SongTable.Cols.UUID + "=\"" + id.toString() + "\"", null);
     }
 }
