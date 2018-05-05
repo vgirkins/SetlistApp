@@ -25,7 +25,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:checked="true"
-                android:clickable="false"
                 android:text="@string/cpPracticeRadio"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="0dp" />
@@ -33,7 +32,6 @@
             <RadioButton
                 android:id="@+id/dpPerfRadio"
                 android:layout_width="wrap_content"
-                android:clickable="false"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/cpPerformRadio" />

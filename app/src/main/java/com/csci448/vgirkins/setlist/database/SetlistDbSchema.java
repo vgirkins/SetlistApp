@@ -6,6 +6,7 @@ public class SetlistDbSchema {
 
         public static final class Cols {
             public static final String UUID = "uuid";
+            public static final String PERFORMANCE = "performance";
             public static final String TITLE = "title";
             public static final String ARTIST = "artist";
             public static final String KEY = "key";

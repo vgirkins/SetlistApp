@@ -9,6 +9,7 @@ import android.util.Log;
 import com.csci448.vgirkins.setlist.database.SetlistBaseHelper;
 import com.csci448.vgirkins.setlist.database.SetlistCursorWrapper;
 import com.csci448.vgirkins.setlist.database.SetlistDbSchema;
+import com.csci448.vgirkins.setlist.database.SetlistDbSchema.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -113,6 +114,10 @@ public class PerformanceLab {
 
 
         return values;
+    }
+
+    public void deletePerformance(UUID id) {
+        mDatabase.delete(PerformanceTable.NAME, PerformanceTable.Cols.UUID + "=\"" + id.toString() + "\"", null);
     }
 
 

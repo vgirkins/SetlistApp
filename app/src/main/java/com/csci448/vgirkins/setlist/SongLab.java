@@ -105,6 +105,7 @@ public class SongLab {
     private static ContentValues getContentValues(Song song) {
         ContentValues values = new ContentValues();
         values.put(SongTable.Cols.UUID, song.getId().toString());
+        values.put(SongTable.Cols.PERFORMANCE, song.getPerfId().toString());
         values.put(SongTable.Cols.TITLE, song.getTitle());
         values.put(SongTable.Cols.ARTIST, song.getArtist());
         values.put(SongTable.Cols.KEY, Character.toString(song.getKey()));

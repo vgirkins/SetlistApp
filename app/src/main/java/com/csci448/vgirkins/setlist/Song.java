@@ -10,6 +10,7 @@ import java.util.UUID;
 public class Song {
 
     private UUID mId;
+    private UUID mPerfId;
     private String title;
     private String artist;
     private char key; // Maybe not the best way to store, consider class or struct
@@ -38,6 +39,15 @@ public class Song {
     }
 
     public UUID getId() { return mId; }
+
+
+    public UUID getPerfId() {
+        return mPerfId;
+    }
+
+    public void setPerfId(UUID perfId) {
+        this.mPerfId = perfId;
+    }
 
     public String getTitle() {
         return title;

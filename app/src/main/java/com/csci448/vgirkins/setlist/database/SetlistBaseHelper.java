@@ -20,6 +20,7 @@ public class SetlistBaseHelper extends SQLiteOpenHelper {
         db.execSQL("create table " + SetlistDbSchema.SongTable.NAME + "(" +
                 " _id integer primary key autoincrement, " +
                 SongTable.Cols.UUID + ", " +
+                SongTable.Cols.PERFORMANCE + ", " +
                 SongTable.Cols.TITLE + ", " +
                 SongTable.Cols.ARTIST  + ", " +
                 SongTable.Cols.KEY + ", " +

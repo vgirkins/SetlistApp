@@ -36,6 +36,8 @@ public class SongPagerActivity extends AppCompatActivity {
 
         mViewPager = findViewById(R.id.view_pager);
 
+
+
         mSongs = SongLab.get(this).getSongs();
         FragmentManager fragmentManager = getSupportFragmentManager();
         mViewPager.setAdapter(new FragmentStatePagerAdapter(fragmentManager) {

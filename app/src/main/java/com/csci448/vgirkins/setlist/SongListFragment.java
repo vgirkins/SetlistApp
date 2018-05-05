@@ -105,7 +105,7 @@ public class SongListFragment extends Fragment{
         }
     }
 
-    private void updateUI() {
+    public void updateUI() {
         SongLab songLab = SongLab.get(getActivity());
         List<Song> songs = songLab.getSongs();
 
