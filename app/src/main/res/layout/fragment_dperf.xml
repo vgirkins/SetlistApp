@@ -39,7 +39,7 @@
                 android:text="@string/cpPerformRadio" />
         </LinearLayout>
 
-        <TextView
+        <EditText
             android:id="@+id/dpName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
             android:layout_weight="0"
             android:hint="@string/cpNameHint" />
 
-        <TextView
+        <EditText
             android:id="@+id/dpBand"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
             android:layout_weight="0"
             android:hint="@string/cpBandHint" />
 
-        <TextView
+        <EditText
             android:id="@+id/dpDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
             android:inputType="date"
             android:hint="@string/cpDateHint" />
 
-        <TextView
+        <EditText
             android:id="@+id/dpTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -98,7 +98,7 @@
         </LinearLayout>
 
 
-        <TextView
+        <EditText
             android:id="@+id/dpLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -106,7 +106,7 @@
             android:layout_weight="0"
             android:hint="@string/cpLocationHint" />
 
-        <TextView
+        <EditText
             android:id="@+id/dpDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

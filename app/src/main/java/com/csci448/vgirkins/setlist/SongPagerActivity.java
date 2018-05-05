@@ -28,11 +28,11 @@ public class SongPagerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_song_pager);
+        setContentView(R.layout.activity_pager);
 
         UUID songId = (UUID) getIntent().getSerializableExtra(EXTRA_SONG_ID);
 
-        mViewPager = findViewById(R.id.song_view_pager);
+        mViewPager = findViewById(R.id.view_pager);
 
         mSongs = SongLab.get(this).getSongs();
         FragmentManager fragmentManager = getSupportFragmentManager();

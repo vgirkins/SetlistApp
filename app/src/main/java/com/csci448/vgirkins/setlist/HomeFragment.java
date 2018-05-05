@@ -62,7 +62,7 @@ public class HomeFragment extends Fragment {
         mPerformancesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO
+                showPerformanceList();
             }
         });
 
@@ -98,8 +98,7 @@ public class HomeFragment extends Fragment {
 
         else if (requestCode == REQUEST_CODE_CREATE_PERFORMANCE) {
             Performance newPerformance = CreateActivity.getPerformance(data);
-            performances.add(newPerformance);
-            Log.i("icecream", "New performance!");
+            PerformanceLab.get(getActivity()).addPerformance(newPerformance);
         }
     }
 
@@ -131,6 +130,11 @@ public class HomeFragment extends Fragment {
 
     public void showSongList() {
         Intent intent = SongListActivity.newIntent(getActivity());
+        startActivity(intent);
+    }
+
+    private void showPerformanceList() {
+        Intent intent = PerformanceListActivity.newIntent(getActivity());
         startActivity(intent);
     }
 

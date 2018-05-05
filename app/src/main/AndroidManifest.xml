@@ -28,6 +28,9 @@
             android:name=".SongActivity"
             android:parentActivityName=".SongListActivity"/>
         <activity android:name=".SongPagerActivity"/>
+        <activity android:name=".PerformanceActivity"/>
+        <activity android:name=".PerformanceListActivity"/>
+        <activity android:name=".PerformancePagerActivity"/>
 
     </application>
 

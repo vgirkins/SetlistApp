@@ -9,12 +9,14 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.UUID;
 
 /**
  * Created by Tori on 3/15/2018.
  */
 
 public class Performance {
+    private UUID mId;
     private boolean isPractice;
     private String name;
     private String bandName;
@@ -25,7 +27,12 @@ public class Performance {
     private String location;
     private String description;
 
+    public Performance(UUID id) {
+        mId = id;
+    }
+
     public Performance(boolean isPractice, String name, String bandName, String date, String time, boolean timeIsAM, String location, String description) {
+        mId = UUID.randomUUID();
         this.isPractice = isPractice;
         this.name = name;
         this.bandName = bandName;
@@ -36,6 +43,10 @@ public class Performance {
         this.location = location;
         this.description = description;
     }
+
+    public UUID getId() { return mId; }
+
+    public void setId(UUID id) { this.mId = id; }
 
     public boolean isPractice() {
         return isPractice;

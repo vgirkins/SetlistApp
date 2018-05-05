@@ -55,7 +55,7 @@ public class SongFragment extends Fragment{
         UUID songId = (UUID) getActivity().getIntent().getSerializableExtra(SongActivity.EXTRA_SONG_ID);
         mSong = SongLab.get(getActivity()).getSong(songId);
         if (mSong == null) {
-            mSong = new Song();  // FIXME hopefully this never happens
+            mSong = new Song(UUID.randomUUID());  // FIXME hopefully this never happens
         }
     }
 

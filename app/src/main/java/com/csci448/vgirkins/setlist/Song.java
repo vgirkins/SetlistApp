@@ -20,18 +20,6 @@ public class Song {
     private String linkToChordCharts;
     private String description;
 
-    // TODO check if still need this constructor
-    public Song() {
-        mId = UUID.randomUUID();
-        title = "Title";
-        artist = "Artist";
-        key = 'X';
-        isMinorKey = true;
-        linkToVid = "";
-        linkToChordCharts = "";
-        description = "Default Song";
-    }
-
     public Song(UUID id) {
         mId = id;
     }

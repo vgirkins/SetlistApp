@@ -2,6 +2,8 @@ package com.csci448.vgirkins.setlist.database;
 
 import android.database.Cursor;
 import android.database.CursorWrapper;
+
+import com.csci448.vgirkins.setlist.Performance;
 import com.csci448.vgirkins.setlist.database.SetlistDbSchema.*;
 
 import com.csci448.vgirkins.setlist.Song;
@@ -37,5 +39,29 @@ public class SetlistCursorWrapper extends CursorWrapper {
         song.setDescription(description);
 
         return song;
+    }
+
+    public Performance getPerformance() {
+        String uuidString = getString(getColumnIndex(PerformanceTable.Cols.UUID));
+        int practice = getInt(getColumnIndex(PerformanceTable.Cols.PRACTICE));
+        String name = getString(getColumnIndex(PerformanceTable.Cols.NAME));
+        String bandName = getString(getColumnIndex(PerformanceTable.Cols.BAND_NAME));
+        String date = getString(getColumnIndex(PerformanceTable.Cols.DATE));
+        String time = getString(getColumnIndex(PerformanceTable.Cols.TIME));
+        int am = getInt(getColumnIndex(PerformanceTable.Cols.AM));
+        String location = getString(getColumnIndex(PerformanceTable.Cols.LOCATION));
+        String description = getString(getColumnIndex(PerformanceTable.Cols.DESCRIPTION));
+
+        Performance performance = new Performance(UUID.fromString(uuidString));
+        performance.setIsPractice(practice == 1);
+        performance.setName(name);
+        performance.setBandName(bandName);
+        performance.setDate(date);
+        performance.setTime(time);
+        performance.setTimeIsAM(am == 1);
+        performance.setLocation(location);
+        performance.setDescription(description);
+
+        return performance;
     }
 }
