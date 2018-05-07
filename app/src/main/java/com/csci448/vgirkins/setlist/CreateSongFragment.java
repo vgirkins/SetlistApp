@@ -6,6 +6,7 @@ package com.csci448.vgirkins.setlist;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -17,6 +18,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
+
 /**
  * Created by Tori on 3/14/2018.
  */
@@ -56,9 +59,6 @@ public class CreateSongFragment extends Fragment {
     public static CreateSongFragment newInstance() {
         Bundle args = new Bundle();
 
-        // Any arguments needed can be added here
-        // FIXME if we don't need any arguments we don't need the Bundle
-
         CreateSongFragment frag = new CreateSongFragment();
         frag.setArguments(args);
         return frag;
@@ -92,20 +92,16 @@ public class CreateSongFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (savedInstanceState != null) {
-            // For rotation later. TODO recover needed values and store in instance variables
-        }
-        else {
-            songName = getArguments().getString(EXTRA_SONG_NAME);
-            songArtist = getArguments().getString(EXTRA_SONG_ARTIST);
-            songKey = getArguments().getChar(EXTRA_SONG_KEY);
-            songKeyIsSharp = getArguments().getBoolean(EXTRA_SONG_KEY_IS_SHARP);
-            songKeyIsFlat = getArguments().getBoolean(EXTRA_SONG_KEY_IS_FLAT);
-            songKeyIsMinor = getArguments().getBoolean(EXTRA_SONG_KEY_IS_MINOR);
-            songChords = getArguments().getString(EXTRA_SONG_CHORDS);
-            songVideo = getArguments().getString(EXTRA_SONG_VIDEO);
-            songDescription = getArguments().getString(EXTRA_SONG_DESCRIPTION);
-        }
+        songName = getArguments().getString(EXTRA_SONG_NAME);
+        songArtist = getArguments().getString(EXTRA_SONG_ARTIST);
+        songKey = getArguments().getChar(EXTRA_SONG_KEY);
+        songKeyIsSharp = getArguments().getBoolean(EXTRA_SONG_KEY_IS_SHARP);
+        songKeyIsFlat = getArguments().getBoolean(EXTRA_SONG_KEY_IS_FLAT);
+        songKeyIsMinor = getArguments().getBoolean(EXTRA_SONG_KEY_IS_MINOR);
+        songChords = getArguments().getString(EXTRA_SONG_CHORDS);
+        songVideo = getArguments().getString(EXTRA_SONG_VIDEO);
+        songDescription = getArguments().getString(EXTRA_SONG_DESCRIPTION);
+
     }
 
     @Override
@@ -164,6 +160,7 @@ public class CreateSongFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 setReturnResult();
+                Toast.makeText(getActivity(), songTitleField.getText() + " created!", Toast.LENGTH_SHORT).show();
                 getActivity().onBackPressed();
             }
         });

@@ -1,9 +1,13 @@
+// citations:   https://dzone.com/articles/playing-sounds-android
+//              https://www.youraccompanist.com/free-scales-and-warm-ups/reference-scales
+
 package com.csci448.vgirkins.setlist;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +16,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.UUID;
 
 /**
@@ -28,11 +31,27 @@ public class SongFragment extends Fragment{
     private TextView mKeyTextView;
     private TextView mKeyLetterTextView;
     private CheckBox mMinorKeyCheckBox;
+    private Button mDemoKeyButton;
     private EditText mChordChartsEditText;
     private EditText mVideoEditText;
     private EditText mDescriptionEditText;
     private Button mDeleteButton;
     private Button mRemoveFromPerformanceButton;
+
+    // MP3 file ids
+    public static final int A = R.raw.a;
+    public static final int Bf = R.raw.bf;
+    public static final int B = R.raw.b;
+    public static final int C = R.raw.c;
+    public static final int Df = R.raw.df;
+    public static final int D = R.raw.d;
+    public static final int Ef = R.raw.ef;
+    public static final int E = R.raw.e;
+    public static final int F = R.raw.f;
+    public static final int Gf = R.raw.gf;
+    public static final int G = R.raw.g;
+    public static final int Af = R.raw.af;
+
     private static final String ARG_SONG_ID = "song_id";
     private static final String ARG_PERFORMANCE_ID = "performance_id";
 
@@ -137,6 +156,94 @@ public class SongFragment extends Fragment{
         mMinorKeyCheckBox.setChecked(mSong.isMinorKey());
         mMinorKeyCheckBox.setEnabled(!viewingFromPerformance);
 
+        mDemoKeyButton = v.findViewById(R.id.dsDemoKey);
+        mDemoKeyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int note = 0;
+                switch (mSong.getKey()) {
+                    case 'A':
+                        if (mSong.isFlatKey()) {
+                            note = Af;
+                        }
+                        else if (mSong.isSharpKey()) {
+                            note = Bf;
+                        }
+                        else {
+                            note = A;
+                        }
+                        break;
+                    case 'B':
+                        if (mSong.isFlatKey()) {
+                            note = Bf;
+                        }
+                        else if (mSong.isSharpKey()) {
+                            note = C;
+                        }
+                        else {
+                            note = B;
+                        }
+                        break;
+                    case 'C':
+                        if (mSong.isFlatKey()) {
+                            note = B;
+                        }
+                        else if (mSong.isSharpKey()) {
+                            note = Df;
+                        }
+                        else {
+                            note = C;
+                        }
+                        break;
+                    case 'D':
+                        if (mSong.isFlatKey()) {
+                            note = Df;
+                        }
+                        else if (mSong.isSharpKey()) {
+                            note = Ef;
+                        }
+                        else {
+                            note = D;
+                        }
+                        break;
+                    case 'E':
+                        if (mSong.isFlatKey()) {
+                            note = Ef;
+                        }
+                        else if (mSong.isSharpKey()) {
+                            note = F;
+                        }
+                        else {
+                            note = E;
+                        }
+                        break;
+                    case 'F':
+                        if (mSong.isFlatKey()) {
+                            note = E;
+                        }
+                        else if (mSong.isSharpKey()) {
+                            note = Gf;
+                        }
+                        else {
+                            note = F;
+                        }
+                        break;
+                    case 'G':
+                        if (mSong.isFlatKey()) {
+                            note = Gf;
+                        }
+                        else if (mSong.isSharpKey()) {
+                            note = Af;
+                        }
+                        else {
+                            note = G;
+                        }
+                        break;
+                }
+                SoundPlayer.playSound(getActivity(), note);
+            }
+        });
+
         mChordChartsEditText = v.findViewById(R.id.dsChords);
         mChordChartsEditText.setText(mSong.getLinkToChordCharts());
         mChordChartsEditText.setEnabled(!viewingFromPerformance);
@@ -225,4 +332,5 @@ public class SongFragment extends Fragment{
 
         return v;
     }
+
 }

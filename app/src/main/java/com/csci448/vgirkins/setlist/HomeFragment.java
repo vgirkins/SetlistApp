@@ -49,6 +49,7 @@ public class HomeFragment extends Fragment {
         if (performances == null) {
             performances = new ArrayList<>();
         }
+        SoundPlayer.initSounds(getActivity());  // Do this right away so no delay when user wishes to play note
     }
 
     @Override

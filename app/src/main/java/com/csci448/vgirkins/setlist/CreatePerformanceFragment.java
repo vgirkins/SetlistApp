@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import java.sql.Time;
 import java.util.Date;
@@ -165,6 +166,7 @@ public class CreatePerformanceFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 setReturnResult();
+                Toast.makeText(getActivity(), nameField.getText() + " created!", Toast.LENGTH_SHORT).show();
                 getActivity().onBackPressed();
             }
         });
@@ -182,7 +184,6 @@ public class CreatePerformanceFragment extends Fragment {
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
-        // FIXME not sure if this is right
 
         isPractice = practiceRadio.isChecked();
         performanceName = nameField.getText().toString();

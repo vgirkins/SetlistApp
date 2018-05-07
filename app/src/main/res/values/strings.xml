@@ -41,6 +41,7 @@
         <string name="dpViewSongsButton"> View Songs </string>
         <string name="dsRemoveButton"> Remove from Performance </string>
         <string name="dpAddSongsButton"> Add Songs </string>
+        <string name="dsDemoKeyButton"> Play tonic </string>
 
         <string-array name="csKeys_array">
             <item>A</item>
