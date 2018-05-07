@@ -204,8 +204,9 @@ public class SongFragment extends Fragment{
         mRemoveFromPerformanceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mSong.setPerfId(null);  // Remove from performance
-                SongLab.get(getActivity()).updateSong(mSong);
+                //mSong.setPerfId(null);  // Remove from performance
+                //SongLab.get(getActivity()).updateSong(mSong);
+                PerformanceSongXRefLab.get(getActivity()).dissociateSong(mPerformanceId, mSong.getId());
                 getActivity().onBackPressed();
             }
         });

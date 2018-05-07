@@ -16,9 +16,10 @@ import java.util.List;
 import java.util.UUID;
 
 public class PerformanceLab {
+    // TODO add functionality to delete performance
+
     private static PerformanceLab mPerformanceLab;
 
-    private List<Performance> mPerformances;
     private Context mContext;
     private SQLiteDatabase mDatabase;
 
@@ -100,10 +101,9 @@ public class PerformanceLab {
     }
 
     private static ContentValues getContentValues(Performance performance) {
-        Log.i("icecream", "Performance is " + (performance.isPractice() ? "practice" : "not practice"));
         ContentValues values = new ContentValues();
         values.put(SetlistDbSchema.PerformanceTable.Cols.UUID, performance.getId().toString());
-        values.put(SetlistDbSchema.PerformanceTable.Cols.PRACTICE, performance.isPractice() ? 1 : 0);   // FIXME not recognizing this column name
+        values.put(SetlistDbSchema.PerformanceTable.Cols.PRACTICE, performance.isPractice() ? 1 : 0);
         values.put(SetlistDbSchema.PerformanceTable.Cols.NAME, performance.getName());
         values.put(SetlistDbSchema.PerformanceTable.Cols.BAND_NAME, performance.getBandName());
         values.put(SetlistDbSchema.PerformanceTable.Cols.DATE, performance.getDate());

@@ -90,8 +90,9 @@ public class SongListFragment extends Fragment{
             // If they are in the adding songs activity, this should just add the song to the performance.
             // Else, it should pull up a detail view of the song.
             if (mUserAddingSongs) {
-                mSong.setPerfId(mPerformance.getId());
-                SongLab.get(getActivity()).updateSong(mSong);
+                //mSong.setPerfId(mPerformance.getId());
+                //SongLab.get(getActivity()).updateSong(mSong);
+                PerformanceSongXRefLab.get(getActivity()).associateSong(mPerformance.getId(), mSong.getId());
                 Toast.makeText(getActivity(), "Added song to performance", Toast.LENGTH_SHORT).show();
             }
             else {
