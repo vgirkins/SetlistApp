@@ -44,6 +44,19 @@ public class PerformanceSongXRefLab {
                         null);
     }
 
+    public void onDeleteSong(UUID songId) { // Remove all references to song
+        mDatabase.delete(PerformanceSongXRefTable.NAME,
+                PerformanceSongXRefTable.Cols.SONG_UUID
+                + "=\"" + songId.toString() + "\"",
+                null);
+    }
+
+    public void onDeletePerformance(UUID performanceId) { // Remove all references to performance
+        mDatabase.delete(PerformanceSongXRefTable.NAME,
+                PerformanceSongXRefTable.Cols.PERF_UUID
+                        + "=\"" + performanceId.toString() + "\"",
+                null);
+    }
     private static ContentValues getContentValues(UUID performanceId, UUID songId) {
         ContentValues values = new ContentValues();
         values.put(PerformanceSongXRefTable.Cols.PERF_UUID, performanceId.toString());

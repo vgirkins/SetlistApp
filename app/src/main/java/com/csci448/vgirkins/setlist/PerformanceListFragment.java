@@ -51,9 +51,9 @@ public class PerformanceListFragment extends Fragment {
 
         public void bind(Performance performance){
             mPerformance = performance;
-            mBandNameTextView.setText(mPerformance.getBandName());
-            mDateTextView.setText(mPerformance.getDate());
-            mLocationTextView.setText(mPerformance.getLocation());
+            mBandNameTextView.setText(mPerformance.getBandName().equals("") ? "No band name" : mPerformance.getBandName());
+            mDateTextView.setText(mPerformance.getDate().equals("") ? "No date" : mPerformance.getDate());
+            mLocationTextView.setText(mPerformance.getLocation().equals("") ? "No location" : mPerformance.getLocation());
         }
 
         @Override

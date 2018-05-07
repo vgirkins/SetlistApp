@@ -9,28 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HomeActivity" android:configChanges="orientation|screenSize">
+        <activity android:name=".HomeActivity" android:configChanges="orientation|screenSize" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".CreateActivity"
-            android:parentActivityName=".HomeActivity">
-        </activity>
-        <activity
-            android:name=".SongListActivity"
-            android:parentActivityName=".HomeActivity">
-        </activity>
-        <activity
-            android:name=".SongActivity"
-            android:parentActivityName=".SongListActivity"/>
-        <activity android:name=".SongPagerActivity"/>
-        <activity android:name=".PerformanceActivity"/>
-        <activity android:name=".PerformanceListActivity"/>
-        <activity android:name=".PerformancePagerActivity"/>
+        <activity android:name=".CreateActivity" android:parentActivityName=".HomeActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".SongListActivity" android:parentActivityName=".HomeActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".SongActivity" android:parentActivityName=".SongListActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".SongPagerActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".PerformanceActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".PerformanceListActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".PerformancePagerActivity" android:screenOrientation="portrait"/>
 
     </application>
 

@@ -125,7 +125,6 @@ public class SongLab {
     }
 
     private SetlistCursorWrapper querySongsFromPerformance(String performanceId) {
-        Log.i("icecream", "Started");
         String rawQuery =   "SELECT " + SongTable.NAME + ".* FROM " + SongTable.NAME + " JOIN " + PerformanceSongXRefTable.NAME
                             + " ON (" + SongTable.Cols.UUID + " = " + PerformanceSongXRefTable.Cols.SONG_UUID
                             + " AND " + PerformanceSongXRefTable.Cols.PERF_UUID + " = " + "\"" + performanceId +"\")";
@@ -133,7 +132,6 @@ public class SongLab {
                 rawQuery,
                 null
         );
-        Log.i("icecream", "Finished");
         return new SetlistCursorWrapper(c);
     }
 

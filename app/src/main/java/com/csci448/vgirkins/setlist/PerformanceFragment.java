@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import java.util.UUID;
 
@@ -221,6 +222,8 @@ public class PerformanceFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 PerformanceLab.get(getActivity()).deletePerformance(mPerformance.getId());
+                PerformanceSongXRefLab.get(getActivity()).onDeletePerformance(mPerformance.getId());
+                Toast.makeText(getActivity(), mPerformance.getName() + " deleted", Toast.LENGTH_SHORT).show();
                 getActivity().onBackPressed();
             }
         });

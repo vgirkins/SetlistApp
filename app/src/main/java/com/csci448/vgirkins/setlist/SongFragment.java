@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.UUID;
 
@@ -63,9 +64,11 @@ public class SongFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_dsong, container, false);
+        boolean viewingFromPerformance = mPerformanceId != null;    // If viewing from performance, song should not be editable
 
         mTitleEditText = v.findViewById(R.id.dsTitle);
         mTitleEditText.setText(mSong.getTitle());
+        mTitleEditText.setEnabled(!viewingFromPerformance);
         mTitleEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -85,6 +88,7 @@ public class SongFragment extends Fragment{
 
         mArtistEditText = v.findViewById(R.id.dsArtist);
         mArtistEditText.setText(mSong.getArtist());
+        mArtistEditText.setEnabled(!viewingFromPerformance);
         mArtistEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -131,9 +135,11 @@ public class SongFragment extends Fragment{
 
         mMinorKeyCheckBox = v.findViewById(R.id.dsIsMinorKey);
         mMinorKeyCheckBox.setChecked(mSong.isMinorKey());
+        mMinorKeyCheckBox.setEnabled(!viewingFromPerformance);
 
         mChordChartsEditText = v.findViewById(R.id.dsChords);
         mChordChartsEditText.setText(mSong.getLinkToChordCharts());
+        mChordChartsEditText.setEnabled(!viewingFromPerformance);
         mChordChartsEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -153,6 +159,7 @@ public class SongFragment extends Fragment{
 
         mVideoEditText = v.findViewById(R.id.dsVideo);
         mVideoEditText.setText(mSong.getLinkToVid());
+        mVideoEditText.setEnabled(!viewingFromPerformance);
         mVideoEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -172,6 +179,7 @@ public class SongFragment extends Fragment{
 
         mDescriptionEditText = v.findViewById(R.id.dsDescript);
         mDescriptionEditText.setText(mSong.getDescription());
+        mDescriptionEditText.setEnabled(!viewingFromPerformance);
         mDescriptionEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -190,24 +198,26 @@ public class SongFragment extends Fragment{
         });
 
         mDeleteButton = v.findViewById(R.id.dsDeleteButton);
-        mDeleteButton.setVisibility(mPerformanceId == null ? View.VISIBLE : View.INVISIBLE);    // Should not be able to delete if just viewing from performance
+        mDeleteButton.setVisibility(viewingFromPerformance ? View.INVISIBLE : View.VISIBLE);    // Should not be able to delete if just viewing from performance
         mDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 SongLab.get(getActivity()).deleteSong(mSong.getId());
-                // TODO delete from xref too
+                PerformanceSongXRefLab.get(getActivity()).onDeleteSong(mSong.getId());
+                Toast.makeText(getActivity(), mSong.getTitle() + " deleted", Toast.LENGTH_SHORT).show();
                 getActivity().onBackPressed();
             }
         });
 
         mRemoveFromPerformanceButton = v.findViewById(R.id.dsRemoveButton);
-        mRemoveFromPerformanceButton.setVisibility(mPerformanceId == null ? View.INVISIBLE : View.VISIBLE);  // Can only remove songs from performance list
+        mRemoveFromPerformanceButton.setVisibility(viewingFromPerformance ? View.VISIBLE : View.INVISIBLE);  // Can only remove songs from performance list
         mRemoveFromPerformanceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //mSong.setPerfId(null);  // Remove from performance
                 //SongLab.get(getActivity()).updateSong(mSong);
                 PerformanceSongXRefLab.get(getActivity()).dissociateSong(mPerformanceId, mSong.getId());
+                Toast.makeText(getActivity(), "Removed song from performance", Toast.LENGTH_SHORT).show();
                 getActivity().onBackPressed();
             }
         });

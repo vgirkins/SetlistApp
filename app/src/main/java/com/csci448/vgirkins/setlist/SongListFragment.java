@@ -80,9 +80,9 @@ public class SongListFragment extends Fragment{
 
         public void bind(Song song){
             mSong = song;
-            mTitleTextView.setText(mSong.getTitle());
-            mArtistTextView.setText(mSong.getArtist());
-            mDescriptionTextView.setText(mSong.getDescription());
+            mTitleTextView.setText(mSong.getTitle().equals("") ? "No title" : mSong.getTitle());
+            mArtistTextView.setText(mSong.getArtist().equals("") ? "No artist" : mSong.getArtist());
+            mDescriptionTextView.setText(mSong.getDescription().equals("") ? "No description" : mSong.getDescription());
         }
 
         @Override
