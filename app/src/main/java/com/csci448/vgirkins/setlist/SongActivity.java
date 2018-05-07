@@ -31,15 +31,18 @@ public class SongActivity extends SingleFragmentActivity{
         }
     }
 
+    // TODO check if we really need this
+    /*
     public static Intent newIntent(Context packageContext, UUID songId) {
         Intent intent = new Intent(packageContext, SongActivity.class);
         intent.putExtra(EXTRA_SONG_ID, songId);
         return intent;
     }
+    */
 
     @Override
     protected Fragment createFragment() {
         UUID songId = (UUID) getIntent().getSerializableExtra(EXTRA_SONG_ID);
-        return SongFragment.newInstance(songId);
+        return SongFragment.newInstance(songId, null);
     }
 }

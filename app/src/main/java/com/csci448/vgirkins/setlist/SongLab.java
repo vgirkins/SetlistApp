@@ -47,10 +47,17 @@ public class SongLab {
     public List<Song> getSongs(UUID performanceId) {
         List<Song> songs = new ArrayList<>();
         String whereClause;
-        if (performanceId == null) whereClause = null;
-        else whereClause = PerformanceTable.Cols.UUID + "=" + "\"" + performanceId + "\"";
+        String[] whereArgs;
+        if (performanceId == null) {
+            whereClause = null;
+            whereArgs = null;
+        }
+        else {
+            whereClause = SongTable.Cols.PERFORMANCE + " = ?";
+            whereArgs = new String[] { performanceId.toString() };
+        }
 
-        SetlistCursorWrapper cursor = querySongs(whereClause, null);
+        SetlistCursorWrapper cursor = querySongs(whereClause, whereArgs);
 
         try {
             cursor.moveToFirst();
@@ -109,7 +116,7 @@ public class SongLab {
     private static ContentValues getContentValues(Song song) {
         ContentValues values = new ContentValues();
         values.put(SongTable.Cols.UUID, song.getId().toString());
-        if (song.getPerfId() != null) values.put(SongTable.Cols.PERFORMANCE, song.getPerfId().toString());  // Song may not be associated with a performance
+        values.put(SongTable.Cols.PERFORMANCE, song.getPerfId() == null ? null : song.getPerfId().toString());  // Song may not be associated with a performance
         values.put(SongTable.Cols.TITLE, song.getTitle());
         values.put(SongTable.Cols.ARTIST, song.getArtist());
         values.put(SongTable.Cols.KEY, Character.toString(song.getKey()));

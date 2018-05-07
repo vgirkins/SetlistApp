@@ -19,8 +19,8 @@ public class PerformanceListFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_performance_list, container, false); // TODO consolidate both into one
-        mPerformanceRecyclerView = view.findViewById(R.id.performance_recycler_view);
+        View view = inflater.inflate(R.layout.fragment_list, container, false); // TODO if problems occur split Performance and Song's usages of these into two files
+        mPerformanceRecyclerView = view.findViewById(R.id.recycler_view);
         mPerformanceRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         updateUI();

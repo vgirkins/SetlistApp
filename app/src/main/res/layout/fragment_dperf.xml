@@ -81,7 +81,6 @@
         <RadioButton
             android:id="@+id/dpAMRadio"
             android:layout_width="wrap_content"
-            android:clickable="false"
             android:layout_height="wrap_content"
             android:checked="true"
             android:text="@string/cpAMRadio"/>
@@ -89,7 +88,6 @@
         <RadioButton
             android:id="@+id/dpPMRadio"
             android:layout_width="wrap_content"
-            android:clickable="false"
             android:layout_height="wrap_content"
             android:text="@string/cpPMRadio" />
 
@@ -129,6 +127,15 @@
                 android:text="@string/dsDeleteButton" />
 
             <Button
+                android:id="@+id/dpViewSongsButton"
+                style="@style/ButtonStyle"
+                android:background="@drawable/button_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/dpViewSongsButton" />
+
+            <Button
                 android:id="@+id/dpAddSongsButton"
                 style="@style/ButtonStyle"
                 android:background="@drawable/button_style"
@@ -136,6 +143,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/dpAddSongsButton" />
+
 
         </LinearLayout>
 

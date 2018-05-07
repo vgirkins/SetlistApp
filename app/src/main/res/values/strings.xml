@@ -38,6 +38,8 @@
         <string name="csPerformance"> Performance </string>
 
         <string name="dsDeleteButton"> Delete </string>
+        <string name="dpViewSongsButton"> View Songs </string>
+        <string name="dsRemoveButton"> Remove from Performance </string>
         <string name="dpAddSongsButton"> Add Songs </string>
 
         <string-array name="csKeys_array">

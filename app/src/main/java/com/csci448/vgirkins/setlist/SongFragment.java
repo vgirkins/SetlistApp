@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +21,7 @@ import java.util.UUID;
 
 public class SongFragment extends Fragment{
     private Song mSong;
+    private UUID mPerformanceId;    // The id of the performance, if any, we opened this song from. If none, null.
 
     private EditText mTitleEditText;
     private EditText mArtistEditText;
@@ -33,11 +33,14 @@ public class SongFragment extends Fragment{
     private EditText mDescriptionEditText;
     private TextView mPerformanceTextView;
     private Button mDeleteButton;
+    private Button mRemoveFromPerformanceButton;
     private static final String ARG_SONG_ID = "song_id";
+    private static final String ARG_PERFORMANCE_ID = "performance_id";
 
-    public static SongFragment newInstance(UUID songId) {
+    public static SongFragment newInstance(UUID songId, UUID performanceId) {
         Bundle args = new Bundle();
         args.putSerializable(ARG_SONG_ID, songId);
+        args.putSerializable(ARG_PERFORMANCE_ID, performanceId);
 
         SongFragment fragment = new SongFragment();
         fragment.setArguments(args);
@@ -54,11 +57,9 @@ public class SongFragment extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        UUID songId = (UUID) getActivity().getIntent().getSerializableExtra(SongActivity.EXTRA_SONG_ID);
+        UUID songId = (UUID) getArguments().getSerializable(ARG_SONG_ID);
+        mPerformanceId = (UUID) getArguments().getSerializable(ARG_PERFORMANCE_ID);
         mSong = SongLab.get(getActivity()).getSong(songId);
-        if (mSong == null) {
-            mSong = new Song(UUID.randomUUID());  // FIXME hopefully this never happens
-        }
     }
 
     @Override
@@ -195,13 +196,25 @@ public class SongFragment extends Fragment{
 
         mPerformanceTextView = v.findViewById(R.id.dsPerformance);
         if (mSong.getPerfId() != null) mPerformanceTextView.setText((PerformanceLab.get(getActivity()).getPerformance(mSong.getPerfId())).getName());
-        else mPerformanceTextView.setText("This song does not belong to a performance");
+        else mPerformanceTextView.setText("This song does not belong to a performance");    // FIXME hardcoded string
 
         mDeleteButton = v.findViewById(R.id.dsDeleteButton);
+        mDeleteButton.setVisibility(mPerformanceId == null ? View.VISIBLE : View.INVISIBLE);    // Should not be able to delete if just viewing from performance
         mDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 SongLab.get(getActivity()).deleteSong(mSong.getId());
+                getActivity().onBackPressed();
+            }
+        });
+
+        mRemoveFromPerformanceButton = v.findViewById(R.id.dsRemoveButton);
+        mRemoveFromPerformanceButton.setVisibility(mPerformanceId == null ? View.INVISIBLE : View.VISIBLE);  // Can only remove songs from performance list
+        mRemoveFromPerformanceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mSong.setPerfId(null);  // Remove from performance
+                SongLab.get(getActivity()).updateSong(mSong);
                 getActivity().onBackPressed();
             }
         });

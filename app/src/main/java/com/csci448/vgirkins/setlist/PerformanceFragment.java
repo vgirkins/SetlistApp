@@ -1,5 +1,6 @@
 package com.csci448.vgirkins.setlist;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -8,11 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.Toast;
 
 import java.util.UUID;
 
@@ -30,7 +29,7 @@ public class PerformanceFragment extends Fragment {
     private EditText mLocationField;
     private EditText mDescriptionField;
     private Button mDeleteButton;
-    private Button mAddSongsButton;
+    private Button mViewSongsButton;
 
 
     private static final String ARG_PERFORMANCE_ID = "performance_id";
@@ -54,7 +53,7 @@ public class PerformanceFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        UUID performanceId = (UUID) getActivity().getIntent().getSerializableExtra(PerformanceActivity.EXTRA_PERFORMANCE_ID);
+        UUID performanceId = (UUID) getArguments().getSerializable(ARG_PERFORMANCE_ID);
         mPerformance = PerformanceLab.get(getActivity()).getPerformance(performanceId);
     }
 
@@ -225,11 +224,12 @@ public class PerformanceFragment extends Fragment {
             }
         });
 
-        mAddSongsButton = v.findViewById(R.id.dpAddSongsButton);
-        mAddSongsButton.setOnClickListener(new View.OnClickListener() {
+        mViewSongsButton = v.findViewById(R.id.dpViewSongsButton);
+        mViewSongsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Clicked!", Toast.LENGTH_SHORT).show();
+                Intent intent = SongListActivity.newIntent(getActivity(), mPerformance.getId());
+                startActivity(intent);
             }
         });
 

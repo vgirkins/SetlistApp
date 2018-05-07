@@ -129,7 +129,7 @@ public class HomeFragment extends Fragment {
     }
 
     public void showSongList() {
-        Intent intent = SongListActivity.newIntent(getActivity());
+        Intent intent = SongListActivity.newIntent(getActivity(), null);
         startActivity(intent);
     }
 
