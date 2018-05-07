@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -25,13 +24,12 @@ public class SongFragment extends Fragment{
 
     private EditText mTitleEditText;
     private EditText mArtistEditText;
-    private EditText mKeyEditText;
-    private EditText mKeyLetterEditText;
+    private TextView mKeyTextView;
+    private TextView mKeyLetterTextView;
     private CheckBox mMinorKeyCheckBox;
     private EditText mChordChartsEditText;
     private EditText mVideoEditText;
     private EditText mDescriptionEditText;
-    private TextView mPerformanceTextView;
     private Button mDeleteButton;
     private Button mRemoveFromPerformanceButton;
     private static final String ARG_SONG_ID = "song_id";
@@ -104,9 +102,9 @@ public class SongFragment extends Fragment{
             }
         });
 
-        mKeyEditText = v.findViewById(R.id.dsKey);
-        mKeyEditText.setText(Character.toString(mSong.getKey()));  // Cast to string
-        mKeyEditText.addTextChangedListener(new TextWatcher() {
+        mKeyTextView = v.findViewById(R.id.dsKey);
+        mKeyTextView.setText(Character.toString(mSong.getKey()));  // Cast to string
+        mKeyTextView.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 // Intentionally left blank
@@ -114,7 +112,7 @@ public class SongFragment extends Fragment{
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                mSong.setKey(charSequence.length() == 0 ? 'C' : charSequence.charAt(0));   // FIXME should learn to expect only 1 character
+                mSong.setKey(charSequence.length() == 0 ? 'C' : charSequence.charAt(0));
             }
 
             @Override
@@ -123,19 +121,16 @@ public class SongFragment extends Fragment{
             }
         });
 
-        // TODO allow editing of key
-        mKeyLetterEditText = v.findViewById(R.id.dsKeyLetter);
-        mKeyLetterEditText.setText(mSong.isSharpKey() ? "♯" : "");
-        mKeyLetterEditText.setText(mSong.isFlatKey() ? "♭" : "");
+        mKeyLetterTextView = v.findViewById(R.id.dsKeyLetter);
+        if (mSong.isSharpKey()) {
+            mKeyLetterTextView.setText("♯");
+        }
+        else if (mSong.isFlatKey()) {
+            mKeyLetterTextView.setText("♭");
+        }
 
         mMinorKeyCheckBox = v.findViewById(R.id.dsIsMinorKey);
         mMinorKeyCheckBox.setChecked(mSong.isMinorKey());
-        mMinorKeyCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                mSong.setIsMinorKey(b);
-            }
-        });
 
         mChordChartsEditText = v.findViewById(R.id.dsChords);
         mChordChartsEditText.setText(mSong.getLinkToChordCharts());
@@ -193,10 +188,6 @@ public class SongFragment extends Fragment{
                 // Intentionally left blank
             }
         });
-
-        mPerformanceTextView = v.findViewById(R.id.dsPerformance);
-        if (mSong.getPerfId() != null) mPerformanceTextView.setText((PerformanceLab.get(getActivity()).getPerformance(mSong.getPerfId())).getName());
-        else mPerformanceTextView.setText("This song does not belong to a performance");    // FIXME hardcoded string
 
         mDeleteButton = v.findViewById(R.id.dsDeleteButton);
         mDeleteButton.setVisibility(mPerformanceId == null ? View.VISIBLE : View.INVISIBLE);    // Should not be able to delete if just viewing from performance

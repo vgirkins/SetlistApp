@@ -34,4 +34,13 @@ public class SetlistDbSchema {
             public static final String DESCRIPTION = "description";
         }
     }
+
+    public static final class PerformanceSongXRefTable {
+        public static final String NAME = "performanceSongXREf";
+
+        public static final class Cols {
+            public static final String PERF_UUID = "perf_uuid";
+            public static final String SONG_UUID = "song_uuid";
+        }
+    }
 }

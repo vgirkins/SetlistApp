@@ -48,6 +48,13 @@ public class SetlistBaseHelper extends SQLiteOpenHelper {
                 PerformanceTable.Cols.DESCRIPTION +
                 ")"
         );
+
+        db.execSQL("create table " + PerformanceSongXRefTable.NAME + "(" +
+                " _id integer primary key autoincrement, " +
+                PerformanceSongXRefTable.Cols.PERF_UUID + ", " +
+                PerformanceSongXRefTable.Cols.SONG_UUID +
+                ")"
+        );
     }
 
     @Override
