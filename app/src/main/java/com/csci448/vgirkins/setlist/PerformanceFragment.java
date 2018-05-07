@@ -30,6 +30,7 @@ public class PerformanceFragment extends Fragment {
     private EditText mDescriptionField;
     private Button mDeleteButton;
     private Button mViewSongsButton;
+    private Button mAddSongsButton;
 
 
     private static final String ARG_PERFORMANCE_ID = "performance_id";
@@ -228,11 +229,19 @@ public class PerformanceFragment extends Fragment {
         mViewSongsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = SongListActivity.newIntent(getActivity(), mPerformance.getId());
+                Intent intent = SongListActivity.newIntent(getActivity(), mPerformance.getId(), false);
                 startActivity(intent);
             }
         });
 
+        mAddSongsButton = v.findViewById(R.id.dpAddSongsButton);
+        mAddSongsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = SongListActivity.newIntent(getActivity(), mPerformance.getId(), true);
+                startActivity(intent);
+            }
+        });
 
 
         return v;

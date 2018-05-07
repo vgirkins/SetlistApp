@@ -35,7 +35,7 @@ public class SongPagerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pager);
 
         final UUID songId = (UUID) getIntent().getSerializableExtra(EXTRA_SONG_ID);
-        final UUID performanceId = (UUID) getIntent().getSerializableExtra(EXTRA_PERFORMANCE_ID); // TODO use this could be null
+        final UUID performanceId = (UUID) getIntent().getSerializableExtra(EXTRA_PERFORMANCE_ID);
 
         mViewPager = findViewById(R.id.view_pager);
 
