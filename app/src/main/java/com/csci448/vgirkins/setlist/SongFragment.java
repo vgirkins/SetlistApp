@@ -195,6 +195,7 @@ public class SongFragment extends Fragment{
             @Override
             public void onClick(View view) {
                 SongLab.get(getActivity()).deleteSong(mSong.getId());
+                // TODO delete from xref too
                 getActivity().onBackPressed();
             }
         });

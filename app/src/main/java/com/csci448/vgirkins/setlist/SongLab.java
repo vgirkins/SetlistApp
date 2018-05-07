@@ -125,13 +125,15 @@ public class SongLab {
     }
 
     private SetlistCursorWrapper querySongsFromPerformance(String performanceId) {
-        String rawQuery =   "SELECT * FROM " + SongTable.NAME + " INNER JOIN " + PerformanceSongXRefTable.NAME
-                            + " ON " + SongTable.Cols.UUID + " = " + PerformanceSongXRefTable.Cols.SONG_UUID
-                            + " AND " + PerformanceSongXRefTable.Cols.PERF_UUID + " = " + performanceId;
+        Log.i("icecream", "Started");
+        String rawQuery =   "SELECT " + SongTable.NAME + ".* FROM " + SongTable.NAME + " JOIN " + PerformanceSongXRefTable.NAME
+                            + " ON (" + SongTable.Cols.UUID + " = " + PerformanceSongXRefTable.Cols.SONG_UUID
+                            + " AND " + PerformanceSongXRefTable.Cols.PERF_UUID + " = " + "\"" + performanceId +"\")";
         Cursor c = mDatabase.rawQuery(
                 rawQuery,
                 null
         );
+        Log.i("icecream", "Finished");
         return new SetlistCursorWrapper(c);
     }
 
