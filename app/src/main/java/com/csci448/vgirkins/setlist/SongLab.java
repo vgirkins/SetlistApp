@@ -45,7 +45,16 @@ public class SongLab {
     }
 
     public List<Song> getSongs(UUID performanceId) {
+
         List<Song> songs = new ArrayList<>();
+        SetlistCursorWrapper cursor;
+        if (performanceId == null) {
+            cursor = querySongs(null, null);
+        }
+        else {
+            cursor = querySongsFromPerformance(performanceId.toString());
+        }
+        /*
         String whereClause;
         String[] whereArgs;
         if (performanceId == null) {
@@ -58,6 +67,7 @@ public class SongLab {
         }
 
         SetlistCursorWrapper cursor = querySongs(whereClause, whereArgs);
+         */
 
         try {
             cursor.moveToFirst();
@@ -68,6 +78,7 @@ public class SongLab {
         } finally {
             cursor.close();
         }
+
 
         return songs;
     }
@@ -111,6 +122,17 @@ public class SongLab {
         );
 
         return new SetlistCursorWrapper(cursor);
+    }
+
+    private SetlistCursorWrapper querySongsFromPerformance(String performanceId) {
+        String rawQuery =   "SELECT * FROM " + SongTable.NAME + " INNER JOIN " + PerformanceSongXRefTable.NAME
+                            + " ON " + SongTable.Cols.UUID + " = " + PerformanceSongXRefTable.Cols.SONG_UUID
+                            + " AND " + PerformanceSongXRefTable.Cols.PERF_UUID + " = " + performanceId;
+        Cursor c = mDatabase.rawQuery(
+                rawQuery,
+                null
+        );
+        return new SetlistCursorWrapper(c);
     }
 
     private static ContentValues getContentValues(Song song) {
