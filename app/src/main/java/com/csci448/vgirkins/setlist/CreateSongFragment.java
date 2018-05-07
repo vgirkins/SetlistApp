@@ -6,7 +6,6 @@ package com.csci448.vgirkins.setlist;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.media.SoundPool;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -70,6 +69,7 @@ public class CreateSongFragment extends Fragment {
         songName = songTitleField.getText().toString();
         songArtist = artistTitleField.getText().toString();
 
+
         songKeyIsMinor = isMinorCheckbox.isChecked();
         songChords = chordsLinkField.getText().toString();
         songVideo = videoLinkField.getText().toString();
@@ -126,7 +126,7 @@ public class CreateSongFragment extends Fragment {
 
             }
         });
-        ArrayAdapter<CharSequence> keyLetterAdapter = ArrayAdapter.createFromResource(getContext(), R.array.csKeys_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> keyLetterAdapter = ArrayAdapter.createFromResource(getContext(), R.array.songKeys_array, android.R.layout.simple_spinner_item);
         keyLetterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         keyLetterDropdown.setAdapter(keyLetterAdapter);
 
@@ -143,7 +143,7 @@ public class CreateSongFragment extends Fragment {
 
             }
         });
-        ArrayAdapter<CharSequence> keyIntervalAdapter = ArrayAdapter.createFromResource(getContext(), R.array.csIntervalArray, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> keyIntervalAdapter = ArrayAdapter.createFromResource(getContext(), R.array.songIntervalArray, android.R.layout.simple_spinner_item);
         keyIntervalAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         keyIntervalDropdown.setAdapter(keyIntervalAdapter);
 

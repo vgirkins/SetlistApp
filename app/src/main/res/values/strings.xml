@@ -43,7 +43,7 @@
         <string name="dpAddSongsButton"> Add Songs </string>
         <string name="dsDemoKeyButton"> Play tonic </string>
 
-        <string-array name="csKeys_array">
+        <string-array name="songKeys_array">
             <item>A</item>
             <item>B</item>
             <item>C</item>
@@ -52,7 +52,7 @@
             <item>F</item>
             <item>G</item>
         </string-array>
-    <string-array name="csIntervalArray">
+    <string-array name="songIntervalArray">
         <item> </item>
         <item>#</item>
         <item>♭</item>

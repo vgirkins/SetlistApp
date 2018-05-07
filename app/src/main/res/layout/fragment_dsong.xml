@@ -33,16 +33,16 @@
             android:orientation="horizontal"
             android:padding="10dp">
 
-            <TextView
-                android:id="@+id/dsKey"
+            <Spinner
+                android:id="@+id/dsKeyLetter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:hint="@string/csKeyHint"
+                android:paddingLeft="10dp"
                 android:paddingRight="10dp" />
 
-            <TextView
-                android:id="@+id/dsKeyLetter"
+            <Spinner
+                android:id="@+id/dsKeyInterval"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
@@ -53,7 +53,6 @@
                 android:id="@+id/dsIsMinorKey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:clickable="false"
                 android:text="@string/csMinor"/>
 
             <Button

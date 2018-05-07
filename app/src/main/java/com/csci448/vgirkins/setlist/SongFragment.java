@@ -11,10 +11,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.Spinner;
 import android.widget.Toast;
 import java.util.UUID;
 
@@ -28,8 +31,8 @@ public class SongFragment extends Fragment{
 
     private EditText mTitleEditText;
     private EditText mArtistEditText;
-    private TextView mKeyTextView;
-    private TextView mKeyLetterTextView;
+    private Spinner mKeyLetterDropdown;
+    private Spinner mKeyIntervalDropdown;
     private CheckBox mMinorKeyCheckBox;
     private Button mDemoKeyButton;
     private EditText mChordChartsEditText;
@@ -125,7 +128,48 @@ public class SongFragment extends Fragment{
             }
         });
 
-        mKeyTextView = v.findViewById(R.id.dsKey);
+
+
+        mKeyLetterDropdown = v.findViewById(R.id.dsKeyLetter);
+        ArrayAdapter<CharSequence> keyLetterAdapter = ArrayAdapter.createFromResource(getContext(), R.array.songKeys_array, android.R.layout.simple_spinner_item);
+        keyLetterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mKeyLetterDropdown.setAdapter(keyLetterAdapter);
+        mKeyLetterDropdown.setSelection(mSong.getKey() - 'A');  // Find the correct key
+        mKeyLetterDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
+                mSong.setKey((char)('A' + pos));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        mKeyIntervalDropdown = v.findViewById(R.id.dsKeyInterval);
+        ArrayAdapter<CharSequence> keyIntervalAdapter = ArrayAdapter.createFromResource(getContext(), R.array.songIntervalArray, android.R.layout.simple_spinner_item);
+        keyIntervalAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mKeyIntervalDropdown.setAdapter(keyIntervalAdapter);
+        // Find the correct interval
+        if (mSong.isSharpKey()) mKeyIntervalDropdown.setSelection(1);
+        else if (mSong.isFlatKey()) mKeyIntervalDropdown.setSelection(2);
+        else mKeyIntervalDropdown.setSelection(0);
+        mKeyIntervalDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
+                mSong.setIsSharpKey(pos == 1);
+                mSong.setIsFlatKey(pos == 2);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
+        /*mKeyTextView = v.findViewById(R.id.dsKeyLetter);
         mKeyTextView.setText(Character.toString(mSong.getKey()));  // Cast to string
         mKeyTextView.addTextChangedListener(new TextWatcher() {
             @Override
@@ -144,23 +188,30 @@ public class SongFragment extends Fragment{
             }
         });
 
-        mKeyLetterTextView = v.findViewById(R.id.dsKeyLetter);
+        mKeyLetterTextView = v.findViewById(R.id.dsKeyInterval);
         if (mSong.isSharpKey()) {
             mKeyLetterTextView.setText("♯");
         }
         else if (mSong.isFlatKey()) {
             mKeyLetterTextView.setText("♭");
-        }
+        }*/
 
         mMinorKeyCheckBox = v.findViewById(R.id.dsIsMinorKey);
         mMinorKeyCheckBox.setChecked(mSong.isMinorKey());
         mMinorKeyCheckBox.setEnabled(!viewingFromPerformance);
+        mMinorKeyCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                mSong.setIsMinorKey(mMinorKeyCheckBox.isChecked());
+            }
+        });
 
         mDemoKeyButton = v.findViewById(R.id.dsDemoKey);
         mDemoKeyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int note = 0;
+                // Play the correct note
                 switch (mSong.getKey()) {
                     case 'A':
                         if (mSong.isFlatKey()) {
