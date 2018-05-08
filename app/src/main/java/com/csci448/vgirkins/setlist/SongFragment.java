@@ -375,7 +375,7 @@ public class SongFragment extends Fragment{
                 //mSong.setPerfId(null);  // Remove from performance
                 //SongLab.get(getActivity()).updateSong(mSong);
                 PerformanceSongXRefLab.get(getActivity()).dissociateSong(mPerformanceId, mSong.getId());
-                Toast.makeText(getActivity(), "Removed song from performance", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Removed " + mSong.getTitle() + " from performance", Toast.LENGTH_SHORT).show();
                 getActivity().onBackPressed();
             }
         });

@@ -93,7 +93,7 @@ public class SongListFragment extends Fragment{
                 //mSong.setPerfId(mPerformance.getId());
                 //SongLab.get(getActivity()).updateSong(mSong);
                 PerformanceSongXRefLab.get(getActivity()).associateSong(mPerformance.getId(), mSong.getId());
-                Toast.makeText(getActivity(), "Added song to performance", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Added " + mSong.getTitle() + " to performance", Toast.LENGTH_SHORT).show();
             }
             else {
                 Intent intent = SongPagerActivity.newIntent(getActivity(), mSong.getId(), mPerformance == null ? null : mPerformance.getId());
