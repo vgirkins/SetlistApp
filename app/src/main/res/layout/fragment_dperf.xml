@@ -53,15 +53,16 @@
             android:layout_weight="0"
             android:hint="@string/cpBandHint" />
 
-        <EditText
+        <TextView
             android:id="@+id/dpDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="0"
             android:ems="10"
-            android:inputType="date"
-            android:hint="@string/cpDateHint" />
+            android:hint="@string/cpDateHint"
+            android:paddingLeft="5sp"
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/dpTime"

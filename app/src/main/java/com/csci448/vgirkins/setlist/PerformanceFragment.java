@@ -1,6 +1,9 @@
 package com.csci448.vgirkins.setlist;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -10,10 +13,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Calendar;
 import java.util.UUID;
 
 public class PerformanceFragment extends Fragment {
@@ -23,7 +29,9 @@ public class PerformanceFragment extends Fragment {
     private RadioButton mPerformanceRadio;
     private EditText mNameField;
     private EditText mBandField;
-    private EditText mDateField;
+    private TextView mDateField;
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
+    private String dateSet;
     private EditText mTimeField;
     private RadioButton mAmRadio;
     private RadioButton mPmRadio;
@@ -131,7 +139,7 @@ public class PerformanceFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                mPerformance.setDate(charSequence.toString());
+                mPerformance.setDate(dateSet);
             }
 
             @Override
@@ -139,6 +147,29 @@ public class PerformanceFragment extends Fragment {
                 // Intentionally left blank
             }
         });
+
+        mDateField.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog = new DatePickerDialog(getContext(), mDateSetListener, year, month, day);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+                dialog.show();
+            }
+        });
+
+        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                dateSet = month + "/" + day + "/" + year;
+                mDateField.setText(dateSet);
+            }
+        };
 
         mTimeField = v.findViewById(R.id.dpTime);
         mTimeField.setText(mPerformance.getTime());

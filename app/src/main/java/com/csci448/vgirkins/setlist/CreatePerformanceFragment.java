@@ -1,7 +1,11 @@
 package com.csci448.vgirkins.setlist;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -10,11 +14,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.Time;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -44,7 +51,9 @@ public class CreatePerformanceFragment extends Fragment {
     private RadioButton performanceRadio;
     private EditText nameField;
     private EditText bandField;
-    private EditText dateField;
+    private TextView dateField;
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
+    private String dateSet;
     private EditText timeField;
     private RadioButton amRadio;
     private RadioButton pmRadio;
@@ -70,7 +79,7 @@ public class CreatePerformanceFragment extends Fragment {
         isPractice = practiceRadio.isChecked();
         performanceName = nameField.getText().toString();
         bandName = bandField.getText().toString();
-        performanceDate = dateField.getText().toString();
+        performanceDate = dateSet;
         performanceTime = timeField.getText().toString();
         timeIsAM = amRadio.isChecked();
         location = locationField.getText().toString();
@@ -136,6 +145,29 @@ public class CreatePerformanceFragment extends Fragment {
         bandField = view.findViewById(R.id.cpBand);
 
         dateField = view.findViewById(R.id.cpDate);
+
+        dateField.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog = new DatePickerDialog(getContext(), mDateSetListener, year, month, day);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+                dialog.show();
+            }
+        });
+
+        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                dateSet = month + "/" + day + "/" + year;
+                dateField.setText(dateSet);
+            }
+        };
 
         timeField = view.findViewById(R.id.cpTime);
 

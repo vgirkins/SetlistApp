@@ -53,15 +53,16 @@
             android:layout_weight="0"
             android:hint="@string/cpBandHint" />
 
-        <EditText
+        <TextView
             android:id="@+id/cpDate"
-            android:layout_width="match_parent"
+            android:layout_width="344dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="0"
             android:ems="10"
-            android:inputType="date"
-            android:hint="@string/cpDateHint" />
+            android:hint="Select Date"
+            android:paddingLeft="5dp"
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/cpTime"
@@ -70,26 +71,26 @@
             android:layout_margin="10dp"
             android:layout_weight="0"
             android:ems="10"
-            android:inputType="time"
-            android:hint="@string/cpTimeHint" />
+            android:hint="@string/cpTimeHint"
+            android:inputType="time" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-        <RadioButton
-            android:id="@+id/cpAMRadio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/cpAMRadio"/>
+            <RadioButton
+                android:id="@+id/cpAMRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/cpAMRadio" />
 
-        <RadioButton
-            android:id="@+id/cpPMRadio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/cpPMRadio" />
+            <RadioButton
+                android:id="@+id/cpPMRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cpPMRadio" />
 
         </LinearLayout>
 
@@ -120,19 +121,19 @@
             <Button
                 android:id="@+id/cpCreateButton"
                 style="@style/ButtonStyle"
-                android:background="@drawable/button_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/button_style"
                 android:text="@string/cpCreateButton" />
 
             <Button
                 android:id="@+id/cpCancelButton"
                 style="@style/ButtonStyle"
-                android:background="@drawable/button_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/button_style"
                 android:text="@string/cpCancelButton" />
         </LinearLayout>
 
